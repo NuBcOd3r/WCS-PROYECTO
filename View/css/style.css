@@ -83,6 +83,25 @@ img {
   max-width: 100%;
 }
 
+#logo img{
+  width: 60px;
+}
+
+.header__top__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  flex: 1;
+  text-align: center;
+}
+
+#user{
+  width: 30px;
+}
+
 input:focus,
 select:focus,
 button:focus,
@@ -101,6 +120,161 @@ ul,
 ol {
   padding: 0;
   margin: 0;
+}
+
+/* Contenedor general */
+.login-section {
+  background: #fefefe; /* fondo claro */
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card del formulario */
+.login-card {
+  background: #ffffff;
+  border: 2px solid #eeeaea; /* borde negro */
+  padding: 35px 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Título */
+.login-title {
+  color: #f08632; /* letras naranjas */
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* Inputs */
+.login-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #f08632;
+  box-shadow: 0 0 6px rgba(240, 134, 50, 0.4);
+}
+
+/* Botón */
+.login-btn {
+  background: #f08632;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+  background: #d46e2d;
+  transform: scale(1.03);
+}
+
+/* Link de registro */
+.login-link {
+  display: block;
+  margin-top: 15px;
+  color: #f08632;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Contenedor general */
+.register-section {
+  background: #fefefe; /* fondo claro */
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card del formulario */
+.register-card {
+  background: #ffffff;
+  border: 2px solid #eeeaea; /* borde negro */
+  padding: 35px 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Título */
+.register-title {
+  color: #f08632; /* letras naranjas */
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* Inputs */
+.register-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.register-input:focus {
+  outline: none;
+  border-color: #f08632;
+  box-shadow: 0 0 6px rgba(240, 134, 50, 0.4);
+}
+
+/* Botón */
+.register-btn {
+  background: #f08632;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.register-btn:hover {
+  background: #d46e2d;
+  transform: scale(1.03);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .register-card {
+    padding: 25px 20px;
+  }
+
+  .register-title {
+    font-size: 24px;
+  }
 }
 
 /*---------------------
@@ -522,35 +696,39 @@ ol {
 }
 
 /*---------------------
-  Hero
+  Hero (versión estática)
 -----------------------*/
 .hero__item {
   height: 700px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  justify-items: center;
-}
-
-.hero__text {
-  text-align: center;
-  background: #ffffff;
-  padding: 65px 70px 70px;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
   position: relative;
 }
-.hero__text:after {
-  position: absolute;
-  left: 15px;
-  top: 15px;
-  height: calc(100% - 30px);
-  width: calc(100% - 30px);
-  border: 1px dashed #f08632;
+
+/* capa oscura ligera para mejorar contraste */
+.hero__item::before {
   content: "";
-  opacity: 0.3;
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 0;
 }
+
+/* contenedor del texto */
+.hero__text {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 65px 70px 70px;
+  position: relative;
+  z-index: 1;
+  border: 1px dashed #f08632;
+  border-radius: 10px;
+}
+
+/* título */
 .hero__text h2 {
   font-size: 46px;
   color: #111111;
@@ -558,47 +736,21 @@ ol {
   font-weight: 700;
   font-style: italic;
   margin-bottom: 18px;
-  position: relative;
-  top: 100px;
-  opacity: 0;
-  -webkit-transition: all, 0.3s;
-  -o-transition: all, 0.3s;
-  transition: all, 0.3s;
-}
-.hero__text .primary-btn {
-  position: relative;
-  top: 100px;
-  opacity: 0;
-  -webkit-transition: all, 0.6s;
-  -o-transition: all, 0.6s;
-  transition: all, 0.6s;
 }
 
-.hero__slider.owl-carousel .owl-item.active .hero__text h2 {
-  top: 0;
-  opacity: 1;
+/* botón */
+.primary-btn {
+  background: #f08632;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
 }
-.hero__slider.owl-carousel .owl-item.active .hero__text .primary-btn {
-  top: 0;
-  opacity: 1;
-}
-.hero__slider.owl-carousel .owl-nav button {
-  height: 50px;
-  width: 50px;
-  background: rgba(17, 17, 17, 0.5);
-  border-radius: 50%;
-  color: #ffffff;
-  font-size: 26px;
-  line-height: 50px;
-  text-align: center;
-  position: absolute;
-  left: 30px;
-  top: 50%;
-  margin-top: -15px;
-}
-.hero__slider.owl-carousel .owl-nav button.owl-next {
-  left: auto;
-  right: 30px;
+
+.primary-btn:hover {
+  background: #d46e2d;
 }
 
 /*---------------------
@@ -940,7 +1092,6 @@ ol {
   position: absolute;
   left: 0;
   top: -34px;
-  background: url(../img/instagram/cake-piece.png) no-repeat;
   height: 139px;
   width: 114px;
   content: "";
@@ -1150,7 +1301,13 @@ ol {
   text-align: center;
   position: relative;
   margin-bottom: 30px;
+  color: #a4a4a4;
 }
+
+.footer__about ul li i {
+  color: #a4a4a4;
+}
+
 .footer__about:after {
   position: absolute;
   right: -35px;
