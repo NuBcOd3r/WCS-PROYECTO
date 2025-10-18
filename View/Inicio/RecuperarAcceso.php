@@ -25,8 +25,8 @@
     <section class="login-section">
         <div class="login-container">
             <div class="login-card">
-            <h2 class="login-title">Inicio de Sesión</h2>
-
+            <h2 class="login-title">Recuperar Contraseña</h2>
+            
             <?php
                 if(isset($_POST["Mensaje"]))
                 {
@@ -34,16 +34,9 @@
                 }
             ?>
 
-            <form action="" class="login-form" method="post" id="formInicioSesion">
+            <form action="" class="login-form" method="post" id="formRecuperarContraseña">
                 <input type="email" placeholder="Correo Electrónico" id="correo" name="correo" class="login-input">
-                <input type="password" placeholder="***************" id="contrasenna" name="contrasenna" class="login-input">
-                <button type="submit" class="login-btn" id="btnInicioSesion" name="btnInicioSesion">Iniciar Sesión</button>
-                <a href="Registro.php" class="login-link">
-                ¿Deseas registrarte?
-                </a>
-                <a href="RecuperarAcceso.php" class="login-link">
-                ¿Haz olvidado tu contraseña?
-                </a>
+                <button type="submit" class="login-btn" id="btnRecuperarContraseña" name="btnRecuperarContraseña">Recuperar Contraseña</button>
             </form>
             </div>
         </div>

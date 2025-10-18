@@ -33,6 +33,9 @@ function ShowJS(){
         <script src="../../View/js/owl.carousel.min.js"></script>
         <script src="../../View/js/jquery.nicescroll.min.js"></script>
         <script src="../../View/js/main.js"></script>
+        <script src="../../View/js/funcionesRegistro.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     ';
 }
 

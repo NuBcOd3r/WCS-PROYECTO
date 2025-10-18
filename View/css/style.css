@@ -84,7 +84,8 @@ img {
 }
 
 #logo img{
-  width: 60px;
+  width: 50px;
+  padding: auto;
 }
 
 .header__top__inner {
@@ -4181,4 +4182,7 @@ ol {
   .checkout__order__products span {
     display: none;
   }
+
+
+
 }
