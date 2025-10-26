@@ -16,7 +16,7 @@
         require 'PHPMailer/src/SMTP.php';
 
         $correoSalida = "bcorella60875@ufide.ac.cr";
-        $contrasennaSalida = "gv1t4rGVTTS@";
+        $contrasennaSalida = "";
 
         if($contrasennaSalida == "")
         {
