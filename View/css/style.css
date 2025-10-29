@@ -163,6 +163,12 @@ ol {
   margin-bottom: 25px;
 }
 
+.form-input {
+  color: #f08632; /* letras naranjas */
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
 /* Inputs */
 .login-input {
   width: 100%;

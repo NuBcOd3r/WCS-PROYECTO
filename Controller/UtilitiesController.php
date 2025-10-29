@@ -20,8 +20,8 @@
         require 'PHPMailer/src/SMTP.php';
         //require 'PHPMailer/src/Exception.php';
 
-        $correoSalida = "fmora00041@ufide.ac.cr";
-        $contrasennaSalida = ""; // es indispensable colocar un passowod aqui!!!
+        $correoSalida = "grupo4wcs@outlook.com";
+        $contrasennaSalida = "g4Grupo4"; // es indispensable colocar un passowod aqui!!!
 
         $mail = new PHPMailer();
         $mail -> CharSet = 'UTF-8';

@@ -26,4 +26,21 @@
         }
     }
 
+    if(isset($_POST["btnRegistrarProducto"]))
+    {
+        $idCategoria = $_POST["idCategoria"];
+        $nombreProducto = $_POST["nombreProducto"];
+        $descripcion = $_POST["descripcion"];
+        $precio = $_POST["precio"];
+
+        $resultado = RegistrarProductoModel($idCategoria, $nombreProducto, $descripcion, $precio);
+
+        if($resultado)
+        {
+            header("Location: ../../View/Productos/Productos.php");
+            exit;
+        }
+
+        $_POST["Mensaje"] = "No se ha podido agregar la categoria.";
+    }
 ?>
