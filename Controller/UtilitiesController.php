@@ -21,7 +21,7 @@
         //require 'PHPMailer/src/Exception.php';
 
         $correoSalida = "fmora00041@ufide.ac.cr";
-        $contrasennaSalida = "1PFI2mnh2OS&";
+        $contrasennaSalida = ""; // es indispensable colocar un passowod aqui!!!
 
         $mail = new PHPMailer();
         $mail -> CharSet = 'UTF-8';
