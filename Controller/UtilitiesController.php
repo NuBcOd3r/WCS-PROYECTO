@@ -1,4 +1,8 @@
 <?php
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    //use PHPMailer\PHPMailer\Exception;
+
     function GenerarContrasenna(){
         $length = 8;
         $chars = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
@@ -14,9 +18,10 @@
     {
         require 'PHPMailer/src/PHPMailer.php';
         require 'PHPMailer/src/SMTP.php';
+        //require 'PHPMailer/src/Exception.php';
 
-        $correoSalida = "bcorella60875@ufide.ac.cr";
-        $contrasennaSalida = "";
+        $correoSalida = "fmora00041@ufide.ac.cr";
+        $contrasennaSalida = "1PFI2mnh2OS&";
 
         $mail = new PHPMailer();
         $mail -> CharSet = 'UTF-8';

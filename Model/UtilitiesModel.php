@@ -2,7 +2,7 @@
 
     function OpenConnection(){
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        return mysqli_connect("127.0.0.1:3306", "root", "7829", "proyectoWS");
+        return mysqli_connect("127.0.0.1:3307", "root", "", "proyectoWS");
     }
 
     function CloseConnection($context){
