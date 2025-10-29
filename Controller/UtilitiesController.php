@@ -18,11 +18,6 @@
         $correoSalida = "bcorella60875@ufide.ac.cr";
         $contrasennaSalida = "";
 
-        if($contrasennaSalida == "")
-        {
-            return true; // Envío exitoso
-        }
-
         $mail = new PHPMailer();
         $mail -> CharSet = 'UTF-8';
 

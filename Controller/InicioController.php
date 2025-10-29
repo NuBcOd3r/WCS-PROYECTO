@@ -1,5 +1,4 @@
 <?php
-    //include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Model/UtilitiesModel.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/UtilitiesController.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Model/InicioModel.php';
 

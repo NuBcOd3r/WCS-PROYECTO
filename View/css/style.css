@@ -143,6 +143,18 @@ ol {
   text-align: center;
 }
 
+/* Card del formulario */
+.categoria-card {
+  background: #ffffff;
+  border: 2px solid #eeeaea; /* borde negro */
+  padding: 35px 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
 /* Título */
 .login-title {
   color: #f08632; /* letras naranjas */

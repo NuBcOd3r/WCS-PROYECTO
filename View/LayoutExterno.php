@@ -53,12 +53,12 @@ function ShowToggler(){
                 </div>
             </div>
             <div class="offcanvas__logo">
-                <a href="../Inicio/Home.php"><img src="../../View/img/logo.png" alt=""></a>
+                <a href="Home.php"><img src="../../View/img/logo.png" alt=""></a>
             </div>
             <div id="mobile-menu-wrap"></div>
             <div class="offcanvas__option">
                 <ul>
-                    <li><a href="../Inicio/InicioSesion.php">Iniciar Sesión</a></li>
+                    <li><a href="InicioSesion.php">Iniciar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -76,14 +76,14 @@ function ShowHeader(){
                             <div class="header__top__left">
                                 <ul>
                                     <li>
-                                        <a href="../Inicio/InicioSesion.php">
+                                        <a href="InicioSesion.php">
                                             <img src="../../View/img/user.png" alt="" id="user">
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="header__logo">
-                                <a href="../Inicio/Home.php" id="logo"><img src="../../View/img/logo.png" alt=""></a>
+                                <a href="Home.php" id="logo"><img src="../../View/img/logo.png" alt=""></a>
                             </div>
                             <div class="header__top__right">
                                 <!--CARRITO-->
