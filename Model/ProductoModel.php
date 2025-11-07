@@ -1,6 +1,52 @@
 <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Model/UtilitiesModel.php';
 
+    //Registrar Producto
+    function RegistrarProductoModel($idCategoria, $nombreProducto, $descripcion, $precio, $imagen)
+    {
+        try
+        {
+            $context = OpenConnection();
+            $sentencia = "CALL RegistrarProducto('$idCategoria', '$nombreProducto', '$descripcion', '$precio', '$imagen')";
+            $resultado = $context -> query($sentencia);
+            CloseConnection($context);
+            return $resultado;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return false;
+        }
+    }
+
+    //Consultar Productos
+    function ConsultarProductosModel()
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL ConsultarProductos()";
+            $resultado = $context -> query($sentencia);
+
+            $datos = [];
+            while($row = $resultado->fetch_assoc()){
+                $datos[] = $row;
+            }
+
+            $resultado->free();
+            CloseConnection($context);
+            
+            return $datos;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
+        }
+    }
+
+    //Registrar Categoria
     function RegistrarCategoriaModel($nombreCategoria)
     {
         try
@@ -18,14 +64,25 @@
         }
     }
 
-    function ConsultarCategoriasModel()
+    //Consultar Categoria
+    function ConsultarCategoriaModel($id)
     {
         try
         {
             $context = OpenConnection();
-            $sentencia = "CALL ConsultarCategorias()";
+
+            $sentencia = "CALL ConsultarCategoria($id)";
             $resultado = $context -> query($sentencia);
-            return $resultado;
+
+            $datos = null;
+            while ($row = $resultado->fetch_assoc()) {
+                $datos = $row;
+            }
+
+            $resultado->free();
+            CloseConnection($context);
+
+            return $datos;
         }
         catch(Exception $error)
         {
@@ -34,14 +91,45 @@
         }
     }
 
-    function RegistrarProductoModel($idCategoria, $nombreProducto, $descripcion, $precio)
+    //Consultar Categorias
+    function ConsultarCategoriasModel()
     {
         try
         {
             $context = OpenConnection();
-            $sentencia = "CALL RegistrarProducto('$idCategoria', '$nombreProducto', '$descripcion', '$precio')";
+
+            $sentencia = "CALL ConsultarCategorias()";
             $resultado = $context -> query($sentencia);
+
+            $datos = [];
+            while($row = $resultado->fetch_assoc()){
+                $datos[] = $row;
+            }
+
+            $resultado->free();
             CloseConnection($context);
+            
+            return $datos;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
+        }
+    }
+
+    //Actualizar Categoria
+    function ActualizarCategoriaModel($idCategoria,$nombreCategoria)
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL ActualizarCategoria('$idCategoria', '$nombreCategoria')";
+            $resultado = $context -> query($sentencia);
+
+            CloseConnection($context);
+
             return $resultado;
         }
         catch(Exception $error)
@@ -49,5 +137,5 @@
             SaveError($error);
             return false;
         }
-    }
+    }   
 ?>

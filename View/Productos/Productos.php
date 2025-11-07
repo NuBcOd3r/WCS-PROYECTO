@@ -1,16 +1,16 @@
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/View/LayoutInterno.php';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/ProductosController.php';
-  $resultado = ConsultarCategorias();
+  $resultado = ConsultarProductos();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <?php
     ShowHead()
 ?>
- 
+
 <body>
 
     <?php
@@ -20,73 +20,74 @@
     <?php
         ShowHeader()
     ?>
- 
- 
+
+
     <!-- FORMULARIO -->
-    <section class="mt-3">
-        <h2 class="login-title text-center mb-3 mt-2">Registrar Productos</h2>
-        <div class="container">
-            <div class="row">
+    <section class="mt-5 mb-5">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
 
-                <div class="col-md-6 mb-3">
-                    <img class="img-fluid rounded border shadow-sm"src="../img/Queque.jpg">
-                </div>
+                    <div class="card shadow-lg border-0 rounded-4" style="background-color: #f8f9fa;">
+                        <div class="card-body">
 
-                <div class="col-md-6 mb-3">
+                            <h2 class="login-title text-center mb-4 mt-2">Listado de Productos</h2>
 
-                    <?php
-                        if(isset($_POST["Mensaje"]))
-                        {
-                            echo '<div class="alert alert-danger text-center">' . $_POST["Mensaje"] . '</div>';
-                        }
-                    ?>
+                            <div class="mb-3">
+                                <a class="btn text-white px-4" style="background-color: #f08632;"
+                                    href="RegistroProductos.php">
+                                    Registrar Producto
+                                </a>
+                            </div>
 
-                    <form action="" class="login-form" method="post" id="formRegistrarProducto">
-                        
-                        <!-- Categoría -->
-                        <div>
-                            <label for="idCategoria" class="form-label mt-2" style="color: #f08632;font-weight: 700;">Categoría</label>
-                            <select name="idCategoria" id="idCategoria" class="form-select border-1 login-input" required style="height: 55px;">
-                                <option value="">Seleccione una categoría</option>
-                                <?php
-                                    if ($resultado && mysqli_num_rows($resultado) > 0) {
-                                        while ($fila = mysqli_fetch_assoc($resultado)) {
-                                            echo "<option value='" . $fila['idCategoria'] . "'>" . $fila['nombreCategoria'] . "</option>";
-                                        }
-                                    } else {
-                                        echo "<option value=''>No hay categorías disponibles</option>";
-                                    }
-                                ?>
-                            </select>
+                            <div class="table-responsive">
+                                <table id="tbProductos" class="table table-striped table-hover align-middle">
+                                    <thead class="table-light text-center">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Categoría</th>
+                                            <th>Producto</th>
+                                            <th>Precio</th>
+                                            <th>Imagen</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            foreach($resultado as $fila) 
+                                            {
+                                                echo "<tr>";
+                                                echo "<td class='text-center'><strong>" . $fila['idProducto'] . "</strong></td>";
+                                                echo "<td class='text-center'>" . htmlspecialchars($fila['nombreCategoria']) . "</td>";
+                                                echo "<td class='text-center'>" . htmlspecialchars($fila['nombreProducto']) . "</td>";
+                                                echo "<td class='text-center'>" . htmlspecialchars($fila['precio']) . "</td>";
+                                                echo "<td class='text-center'><img src='" . htmlspecialchars($fila['imagen']) . "' width='85' height='85' class='rounded shadow-sm'></td>";
+                                                echo "<td><a href='ActualizarProducto.php?id=" . $fila["idProducto"] . "'> Actualizar </td>";
+                                                echo "</tr>";
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
+                    </div>
 
-                        <!-- Nombre del producto -->
-                        <label for="nombreProducto" class="form-label mt-2" style="color: #f08632;font-weight: 700;">Nombre del producto</label>
-                        <input type="text" placeholder="Ejm: Pastel de Chocolate" id="nombreProducto" name="nombreProducto" class="login-input" required>
-
-                        <!-- Descripción -->
-                        <label for="descripcion" class="form-label mt-2" style="color: #f08632;font-weight: 700;">Descripción</label>
-                        <input type="text" placeholder="Ingrese una breve descripción" id="descripcion" name="descripcion" class="login-input" required>
-
-                        <!-- Precio -->
-                        <label for="precio" class="form-label mt-1" style="color: #f08632;font-weight: 700;">Precio</label>
-                        <input type="number" placeholder="Ejm: 2500" id="precio" name="precio" class="login-input" required>
-
-                        <!-- Botón -->
-                        <button type="submit" class="login-btn mt-0" id="btnRegistrarProducto" name="btnRegistrarProducto">Registrar</button>
-                    </form>
                 </div>
             </div>
         </div>
     </section>
 
+
     <?php
         ShowFooter()
     ?>
- 
+
     <?php
         ShowJS()
     ?>
+
+    <script src="../js/VerProductos.js"></script>
 </body>
- 
+
 </html>

@@ -5,7 +5,7 @@
 
     function GenerarContrasenna(){
         $length = 8;
-        $chars = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
+        $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $max = strlen($chars) - 1;
         $pass = '';
         for($i = 0; $i < $length; $i++){
@@ -18,10 +18,10 @@
     {
         require 'PHPMailer/src/PHPMailer.php';
         require 'PHPMailer/src/SMTP.php';
-        //require 'PHPMailer/src/Exception.php';
+        require 'PHPMailer/src/Exception.php';
 
-        $correoSalida = "grupo4wcs@outlook.com";
-        $contrasennaSalida = "g4Grupo4"; // es indispensable colocar un passowod aqui!!!
+        $correoSalida = "bcorella60874@ufide.ac.cr";
+        $contrasennaSalida = "gv1t4rGVTTS@"; // es indispensable colocar un passowod aqui!!!
 
         $mail = new PHPMailer();
         $mail -> CharSet = 'UTF-8';
