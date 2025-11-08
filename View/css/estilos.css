@@ -1,0 +1,55 @@
+
+.user-dropdown .user-icon {
+    color: #f08632;
+    font-size: 1.4rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.user-dropdown .user-icon:hover {
+    color: #d36b22;
+    transform: scale(1.1);
+}
+
+.user-menu {
+    border: 2px solid #f08632;
+    border-radius: 10px;
+}
+
+.user-divider {
+    border-color: #f08632;
+    opacity: 0.3;
+}
+
+.user-option {
+    color: #333;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.user-option:hover {
+    background-color: #f08632;
+    color: #fff;
+}
+
+.user-option-icon {
+    color: #f08632;
+    transition: color 0.3s ease;
+}
+
+.user-option:hover .user-option-icon {
+    color: #fff;
+}
+
+.logout {
+    font-weight: 600;
+}
+
+.logout:hover {
+    background-color: #c14f1a;
+}
+
+/* Sombra sutil */
+.user-menu {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

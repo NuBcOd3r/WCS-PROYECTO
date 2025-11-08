@@ -37,7 +37,7 @@
                         }
                     ?>
 
-                    <form action="" class="login-form" method="post" id="formRegistrarProducto">
+                    <form action="" class="login-form" method="post" id="formRegistrarProducto" enctype="multipart/form-data">
                         
                         <!-- Categoría -->
                         <div>
@@ -77,7 +77,7 @@
                         <!-- Imagen -->
                         <div>
                         <label for="imagen" class="form-label mt-1" style="color: #f08632;font-weight: 700;">Imagen</label>
-                        <input type="file" placeholder="Ejm: 2500" id="imagen" name="imagen" class="login-input" required>
+                        <input type="file"  id="imagen" name="imagen" class="login-input" required>
                         </div>
 
                         <!-- Botón -->

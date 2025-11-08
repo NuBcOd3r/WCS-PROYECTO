@@ -46,6 +46,51 @@
         }
     }
 
+    //Consultar Producto
+    function ConsultarProductoModel($id)
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL ConsultarProducto($id)";
+            $resultado = $context -> query($sentencia);
+
+            $datos = null;
+            while ($row = $resultado->fetch_assoc()) {
+                $datos = $row;
+            }
+
+            $resultado->free();
+            CloseConnection($context);
+
+            return $datos;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
+        }
+    }
+
+    //Actualizar Producto
+    function ActualizarProductoModel($idProducto, $idCategoria, $nombreProducto, $descripcion, $precio, $imagen)
+    {
+        try
+        {
+            $context = OpenConnection();
+            $sentencia = "CALL ActualizarProducto('$idProducto','$idCategoria', '$nombreProducto', '$descripcion', '$precio', '$imagen')";
+            $resultado = $context -> query($sentencia);
+            CloseConnection($context);
+            return $resultado;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return false;
+        }
+    }
+
     //Registrar Categoria
     function RegistrarCategoriaModel($nombreCategoria)
     {

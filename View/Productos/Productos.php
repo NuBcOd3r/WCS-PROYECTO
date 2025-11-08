@@ -58,10 +58,10 @@
                                             {
                                                 echo "<tr>";
                                                 echo "<td class='text-center'><strong>" . $fila['idProducto'] . "</strong></td>";
-                                                echo "<td class='text-center'>" . htmlspecialchars($fila['nombreCategoria']) . "</td>";
-                                                echo "<td class='text-center'>" . htmlspecialchars($fila['nombreProducto']) . "</td>";
-                                                echo "<td class='text-center'>" . htmlspecialchars($fila['precio']) . "</td>";
-                                                echo "<td class='text-center'><img src='" . htmlspecialchars($fila['imagen']) . "' width='85' height='85' class='rounded shadow-sm'></td>";
+                                                echo "<td class='text-center'>" . $fila['nombreCategoria'] . "</td>";
+                                                echo "<td class='text-center'>" . $fila['nombreProducto'] . "</td>";
+                                                echo "<td class='text-center'>" . $fila['precio'] . "</td>";
+                                                echo "<td class='text-center'><img src='" . $fila['imagen'] . "' width='85' height='85' class='rounded shadow-sm'></td>";
                                                 echo "<td><a href='ActualizarProducto.php?id=" . $fila["idProducto"] . "'> Actualizar </td>";
                                                 echo "</tr>";
                                             }

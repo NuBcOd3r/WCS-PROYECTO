@@ -1,5 +1,12 @@
 <?php
 
+include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/InicioController.php';
+
+if(session_status() == PHP_SESSION_NONE)
+{
+    session_start();
+}
+
 function ShowHead(){
     echo'
         <head>
@@ -18,6 +25,7 @@ function ShowHead(){
         <link rel="stylesheet" href="../../View/css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="../../View/css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="../../View/css/style.css" type="text/css">
+        <link rel="stylesheet" href="../../View/css/estilos.css" type="text/css">
     </head>
     ';
 }
@@ -36,6 +44,7 @@ function ShowJS(){
         <script src="../../View/js/funcionesRegistro.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     ';
 }
 
@@ -66,6 +75,13 @@ function ShowToggler(){
 }
 
 function ShowHeader(){
+$nombre = "";
+$nombrePerfil = "";
+
+if(isset($_SESSION["nombre"])){
+    $nombre = $_SESSION["nombre"];
+    $nombrePerfil = $_SESSION["NombrePerfil"];
+}
     echo'
         <header class="header">
         <div class="header__top">
@@ -75,10 +91,38 @@ function ShowHeader(){
                         <div class="header__top__inner">
                             <div class="header__top__left">
                                 <ul>
-                                    <li>
-                                        <a href="InicioSesion.php">
-                                            <img src="../../View/img/user.png" alt="" id="user">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-solid fa-user"></i>
                                         </a>
+                                         <ul class="dropdown-menu dropdown-menu-end p-3 shadow user-menu bg-light" aria-labelledby="userDropdown" id="userDropdownMenu">
+                                                <li><hr class="dropdown-divider user-divider"></li>
+                                                <li style="color:black;">'. $nombre .' <br> '. $nombrePerfil . '</li>
+                                                <li>
+                                                    <a class="dropdown-item user-option" id="updateInfo" href="../Inicio/InicioSesion.php">
+                                                        <i class="fa-solid fa-user-pen me-2 user-option-icon"></i>Iniciar Sesión
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item user-option" id="updateInfo" href="../Usuarios/Perfil.php">
+                                                        <i class="fa-solid fa-user-pen me-2 user-option-icon"></i>Actualizar información
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item user-option" id="updatePassword" href="../Usuarios/Seguridad.php">
+                                                        <i class="fa-solid fa-key me-2 user-option-icon"></i>Actualizar contraseña
+                                                    </a>
+                                                </li>
+                                                <li><hr class="dropdown-divider user-divider"></li>
+                                                <li>
+                                                    <form action="" method="POST">
+                                                    <button type="submit" class="dropdown-item" id="btnSalir" name="btnSalir">
+                                                    <i class="bx bx-power-off me-2"></i>
+                                                    <span class="align-middle">Cerrar Sesión</span>
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </div>
@@ -170,3 +214,11 @@ function ShowFooter(){
     ';
 }
 ?>
+
+<script>
+  window.addEventListener("pageshow", function (event) {
+    if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+      window.location.reload(true);
+    }
+  });
+</script>

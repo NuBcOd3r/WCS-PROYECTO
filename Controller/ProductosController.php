@@ -35,6 +35,41 @@
         return ConsultarProductosModel();
     }
 
+    //Consultar Producto
+    function ConsultarProducto($id)
+    {
+        return ConsultarProductoModel($id);
+    }
+
+    //Actualizar Producto
+    if(isset($_POST["btnActualizarProducto"]))
+    {
+        $idProducto = $_POST["idProducto"];
+        $idCategoria = $_POST["idCategoria"];
+        $nombreProducto = $_POST["nombreProducto"];
+        $descripcion = $_POST["descripcion"];
+        $precio = $_POST["precio"];
+        $imagen = '';
+
+        if($_FILES["imagen"]["name"] != "")
+        {
+            $imagen = '../img/' . $_FILES["imagen"]["name"];
+            $origen = $_FILES["imagen"]["tmp_name"];
+            $destino = $_SERVER["DOCUMENT_ROOT"] . '/WCS-PROYECTO/View/img/' . $_FILES["imagen"]["name"];
+            copy($origen,$destino);
+        }  
+
+        $resultado = ActualizarProductoModel($idProducto,$idCategoria,$nombreProducto,$descripcion,$precio,$imagen);
+
+        if($resultado)
+        {
+            header("Location: ../../View/Productos/Productos.php");
+            exit;
+        }
+
+        $_POST["Mensaje"] = "No se ha podido agregar el producto.";
+    }
+
     //Registrar Categoria
     if(isset($_POST["btnRegistrarCategoria"]))
     {
