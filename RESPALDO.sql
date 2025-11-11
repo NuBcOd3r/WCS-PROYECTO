@@ -619,17 +619,19 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidarUsuario`(
 )
 BEGIN
     SELECT 
-		idUsuario,
-        cedula,
-        nombre,
-        correoElectronico,
-        telefono,
-        contrasenna,
-        estado,
-        idRol
-	FROM tbUsuarios
-    WHERE correoElectronico = pCorreoElectronico
-    AND contrasenna = pContrasenna
+		u.idUsuario,
+        u.cedula,
+        u.nombre,
+        u.correoElectronico,
+        u.telefono,
+        u.contrasenna,
+        u.estado,
+        u.idRol,
+        r.nombreRol AS NombrePerfil
+	FROM tbUsuarios u
+    INNER JOIN tbrol r ON u.idRol = r.idRol
+    WHERE u.correoElectronico = pCorreoElectronico
+    AND u.contrasenna = pContrasenna
     AND estado = 1;
 END ;;
 DELIMITER ;
