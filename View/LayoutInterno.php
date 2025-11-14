@@ -21,17 +21,18 @@
 
             <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
             <link rel="stylesheet" href="../../View/css/bootstrap.min.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/flaticon.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/barfiller.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/magnific-popup.css" type="text/css">
-            <link rel="stylesheet" href="../../View/css/font-awesome.min.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/elegant-icons.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/nice-select.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/owl.carousel.min.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/slicknav.min.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/style.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/estilos.css" type="text/css">
+            
         </head>
         ';
     }
@@ -155,8 +156,8 @@
                     <div class="col-lg-12">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="#">Inicio</a></li>
-                                <li><a href="#">Sobre Nosotros</a></li>
+                                <li><a href="../Inicio/Home.php">Inicio</a></li>
+                                <li><a href="../SobreNosotros/SobreNosotros.php">Sobre Nosotros</a></li>
                                 <li><a href="../Productos/Categoria.php">Categorias</a></li>
                                 <li><a href="../Productos/Productos.php">Productos</a></li>
                                 <li><a href="#">Contáctanos</a></li>
@@ -192,11 +193,11 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 text-center">
                     <div class="footer__about">
                         <div class="footer__logo mb-3">
-                            <a href="#"><img src="../../View/img/footer-logo.png" alt="Logo"></a>
+                            <a href="../Inicio/Home.php"><img src="../../View/img/footer-logo.png" alt="Logo"></a>
                         </div>
 
                         <div class="footer__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-facebook-official"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
                             <a href="#"><i class="fa fa-youtube-play"></i></a>

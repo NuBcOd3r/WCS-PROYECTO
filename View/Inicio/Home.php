@@ -218,7 +218,7 @@
                             <h2>Momentos dulces que se guardan como recuerdos.</h2>
                         </div>
                             <h5>
-                            <i class="fa fa-instagram" style="color:#E1306C; margin-right:6px;"></i>
+                            <i class="fa fa-facebook-official" style="color:#E1306C; margin-right:6px;"></i>
                             <a href="https://www.instagram.com/sweet_cakes_marys/" target="_blank" style="text-decoration:none; color:#a4a4a4;">
                                 @sweet_cakes_marys
                             </a>
