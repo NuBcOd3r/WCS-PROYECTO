@@ -1,40 +1,46 @@
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/View/LayoutInterno.php';
-  include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/ProductosController.php';
-  $resultado = ConsultarProductos();
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/ContactoController.php';
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <?php
     ShowHead()
 ?>
-
 <body>
-
     <?php
       ShowToggler()
    ?>
-
     <?php
         ShowHeader()
     ?>
-
-
     <!-- SECCIÓN DE CONTACTO -->
     <section class="mt-5 mb-5">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-10">
                     <h2 class="text-center mb-4">Contáctanos</h2>
+                    
+                    <?php
+                        if(isset($_SESSION["MensajeExito"]))
+                        {
+                            echo '<div class="alert alert-success text-center">' . $_SESSION["MensajeExito"] . '</div>';
+                            unset($_SESSION["MensajeExito"]);
+                        }
+                        
+                        if(isset($_POST["Mensaje"]))
+                        {
+                            echo '<div class="alert alert-danger text-center">' . $_POST["Mensaje"] . '</div>';
+                        }
+                    ?>
+                    
                     <div class="row g-4">
                         <!-- CARD IZQUIERDA - FORMULARIO -->
                         <div class="col-md-6">
                             <div class="card shadow-lg border-0 rounded-4 h-100" style="background-color: #f8f9fa;">
                                 <div class="card-body p-4">
                                     <h4 class="card-title mb-4 text-center">Envíanos un mensaje</h4>
-                                    <form id="formContacto" method="POST">
+                                    <form action="" method="POST" id="formContacto">
                                         <div class="mb-3">
                                             <label for="nombre" class="form-label">Nombre Completo</label>
                                             <input type="text" class="form-control" id="nombre" name="nombre" 
@@ -67,7 +73,8 @@
                                         
                                         <div class="d-grid">
                                             <button type="submit" class="btn text-white py-2" 
-                                                    style="background-color: #f08632;">
+                                                    style="background-color: #f08632;" 
+                                                    id="btnEnviarContacto" name="btnEnviarContacto">
                                                 <i class="bi bi-send"></i> Enviar Mensaje
                                             </button>
                                         </div>
@@ -82,8 +89,8 @@
                                 <div class="card-body p-4 d-flex flex-column justify-content-center">
                                     <h4 class="card-title mb-4 text-center">Información de Contacto</h4>
                                     
-                                    <div class="mb-4 text-center">
-                                        <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <div class="mb-4">
+                                        <div class="d-flex align-items-start mb-3">
                                             <div class="me-3">
                                                 <i class="bi bi-geo-alt-fill fs-4" style="color: #f08632;"></i>
                                             </div>
@@ -93,7 +100,7 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="d-flex align-items-center justify-content-center mb-3">
+                                        <div class="d-flex align-items-start mb-3">
                                             <div class="me-3">
                                                 <i class="bi bi-telephone-fill fs-4" style="color: #f08632;"></i>
                                             </div>
@@ -103,7 +110,7 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="d-flex align-items-center justify-content-center mb-3">
+                                        <div class="d-flex align-items-start mb-3">
                                             <div class="me-3">
                                                 <i class="bi bi-envelope-fill fs-4" style="color: #f08632;"></i>
                                             </div>
@@ -120,6 +127,19 @@
                                         <p class="mb-1"><strong>Sábados:</strong> 9:00 AM - 2:00 PM</p>
                                         <p class="mb-0"><strong>Domingos:</strong> Cerrado</p>
                                     </div>
+                                    
+                                    <div class="mt-4 text-center">
+                                        <h6 class="mb-3">Síguenos en Redes Sociales</h6>
+                                        <a href="#" class="btn btn-outline-secondary btn-sm me-2">
+                                            <i class="bi bi-facebook"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-outline-secondary btn-sm me-2">
+                                            <i class="bi bi-instagram"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-outline-secondary btn-sm">
+                                            <i class="bi bi-whatsapp"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -128,17 +148,11 @@
             </div>
         </div>
     </section>
-
-
     <?php
         ShowFooter()
     ?>
-
     <?php
         ShowJS()
     ?>
-
-    <script src="../js/VerProductos.js"></script>
 </body>
-
 </html>
