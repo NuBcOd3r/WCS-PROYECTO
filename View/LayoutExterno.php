@@ -80,6 +80,7 @@ function ShowToggler(){
     function ShowHeader(){
         $nombre = "";
         $nombrePerfil = "";
+        $perfil = "";
 
         if(isset($_SESSION["nombre"])){
             $nombre = $_SESSION["nombre"];
@@ -156,25 +157,25 @@ function ShowToggler(){
                                 echo'
                                 <li><a href="../Inicio/Home.php">Inicio</a></li>
                                 <li><a href="../SobreNosotros/SobreNosotros.php">Sobre Nosotros</a></li>
+                                <li><a href="../Productos/Productos.php">Productos</a></li>
+                                <li><a href="../Inicio/Contactanos.php">Contáctanos</a></li>
                                 ';
-                            }
-                            echo'
-                                
-                                ';
-                                if(isset($perfil) && $perfil == "1"){
+                            }else if(isset($perfil) && $perfil == "1"){
                                     echo '
                                         <li><a href="../Administrador/Dashboard.php">Dashboard</a></li>
                                         <li><a href="../Productos/Categoria.php">Categorias</a></li>
+                                        <li><a href="../Productos/Productos.php">Productos</a></li>
                                     ';
+                                }else{
+                                    echo'
+                                    <li><a href="../Inicio/Home.php">Inicio</a></li>
+                                    <li><a href="../SobreNosotros/SobreNosotros.php">Sobre Nosotros</a></li>
+                                    <li><a href="../Productos/Productos.php">Productos</a></li>
+                                    <li><a href="../Inicio/Contactanos.php">Contáctanos</a></li>
+                                ';
                                 }
 
                                 echo '
-                                <li><a href="../Productos/Productos.php">Productos</a></li>';
-                                if(isset($perfil) && $perfil == "2"){
-                                    echo '
-                                        <li><a href="../Inicio/Contactanos.php">Contáctanos</a></li>';
-                                }
-                                echo'
                             </ul>
                         </nav>
                     </div>
@@ -183,7 +184,6 @@ function ShowToggler(){
         </header>
         ';
     }
-
 
 
 function ShowFooter(){

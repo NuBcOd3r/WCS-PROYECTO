@@ -32,93 +32,97 @@
     ?>
 
 
-    <!-- SECCIÓN PARA ADMINISTRADORES -->
-    <?php
-        $perfil = "";
+  <!-- SECCIÓN PARA ADMINISTRADORES -->
+<?php
+    $perfil = "";
 
-        if(isset($_SESSION["nombre"])){
-            $perfil = $_SESSION["idRol"];
-        }
+    if (isset($_SESSION["nombre"])) {
+        $perfil = $_SESSION["idRol"];
+    }
 
-        if($perfil == "1"){
-            echo '
-            <section class="mt-5 mb-5">
-                <div class="container-fluid">
-                    <div class="row justify-content-center">
-                        <div class="col-md-10">
+    if ($perfil == "1") {
+        echo '
+        <section class="mt-5 mb-5">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
 
-                            <div class="card shadow-lg border-0 rounded-4" style="background-color: #f8f9fa;">
-                                <div class="card-body">
+                        <div class="card shadow-lg border-0 rounded-4" style="background-color: #f8f9fa;">
+                            <div class="card-body">
 
-                                    <h2 class="login-title text-center mb-4 mt-2">Listado de Productos</h2>
+                                <h2 class="login-title text-center mb-4 mt-2">Listado de Productos</h2>
 
-                                    <div class="mb-3">
-                                        <a class="btn text-white px-4" style="background-color: #f08632;"
-                                            href="RegistroProductos.php">
-                                            Registrar Producto
-                                        </a>
-                                    </div>
+                                <div class="mb-3">
+                                    <a class="btn text-white px-4" style="background-color: #f08632;"
+                                        href="RegistroProductos.php">
+                                        Registrar Producto
+                                    </a>
+                                </div>
 
-                                    <div class="table-responsive">
-                                        <table id="tbProductos" class="table table-striped table-hover align-middle">
-                                            <thead class="table-light text-center">
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Categoría</th>
-                                                    <th>Producto</th>
-                                                    <th>Precio</th>
-                                                    <th>Cantidad</th>
-                                                    <th>Estado</th>
-                                                    <th>Imagen</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>';
-                                                
-                                                foreach($resultado as $fila) 
-                                                {
-                                                    echo "<tr>";
-                                                    echo "<td class='text-center align-middle'><strong>" . $fila['idProducto'] . "</strong></td>";
-                                                    echo "<td class='text-center align-middle'>" . $fila['nombreCategoria'] . "</td>";
-                                                    echo "<td class='text-center align-middle'>" . $fila['nombreProducto'] . "</td>";
-                                                    echo "<td class='text-center align-middle'>₡" . $fila['precio'] . "</td>";
-                                                    echo "<td class='text-center align-middle'>" . $fila['cantidad'] . "</td>";
-                                                    echo "<td class='text-center align-middle'>" . $fila['estado'] . "</td>";
-                                                    echo "<td class='text-center align-middle'><img src='" . $fila['imagen'] . "' width='85' height='85' class='rounded shadow-sm'></td>";
-                                                    echo "<td class='text-center align-middle'>
-                                                        <div style='display: flex; justify-content: center; gap: 20px; align-items: center;'>
+                                <div class="table-responsive">
+                                    <table id="tbProductos" class="table table-striped table-hover align-middle">
+                                        <thead class="table-light text-center">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Categoría</th>
+                                                <th>Producto</th>
+                                                <th>Precio</th>
+                                                <th>Cantidad</th>
+                                                <th>Estado</th>
+                                                <th>Imagen</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>';
 
-                                                            <a href='ActualizarProducto.php?id=" . $fila['idProducto'] . "'
+                                            foreach ($resultado as $fila) {
+                                                echo "<tr>";
+                                                echo "<td class='text-center align-middle'><strong>" . $fila['idProducto'] . "</strong></td>";
+                                                echo "<td class='text-center align-middle'>" . $fila['nombreCategoria'] . "</td>";
+                                                echo "<td class='text-center align-middle'>" . $fila['nombreProducto'] . "</td>";
+                                                echo "<td class='text-center align-middle'>₡" . $fila['precio'] . "</td>";
+                                                echo "<td class='text-center align-middle'>" . $fila['cantidad'] . "</td>";
+                                                echo "<td class='text-center align-middle'>" . $fila['estado'] . "</td>";
+                                                echo "<td class='text-center align-middle'><img src='" . $fila['imagen'] . "' width='85' height='85' class='rounded shadow-sm'></td>";
+
+                                                echo "
+                                                <td class='text-center align-middle'>
+                                                    <div style='display: flex; justify-content: center; gap: 20px; align-items: center;'>
+
+                                                        <a href='ActualizarProducto.php?id=" . $fila['idProducto'] . "'
                                                             style='color: #0d6efd; font-size: 26px;'>
-                                                                <i class=\"fa-regular fa-pen-to-square\"></i>
-                                                            </a>
+                                                            <i class=\"fa-regular fa-pen-to-square\"></i>
+                                                        </a>
 
-                                                            <form method='POST' action='' style='margin: 0; padding: 0;'>
-                                                                <input type='hidden' name='idProducto' value='" . $fila['idProducto'] . "'>
-                                                                <button type='submit' name='btnEliminar'
-                                                                        style='background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: #dc3545; font-size: 26px;'>
-                                                                    <i class=\"fa-solid fa-eraser\"></i>
-                                                                </button>
-                                                            </form>
+                                                        <form method='POST' action='' style='margin: 0; padding: 0;'>
+                                                            <input type='hidden' name='idProducto' value='" . $fila['idProducto'] . "'>
+                                                            <button type='submit' name='btnEliminar'
+                                                                    style='background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: #dc3545; font-size: 26px;'>
+                                                                <i class=\"fa-solid fa-eraser\"></i>
+                                                            </button>
+                                                        </form>
 
-                                                        </div>
-                                                    </td>";
-                                                    echo "</tr>";
-                                                }
+                                                    </div>
+                                                </td>
+                                                ";
 
-                                                echo '                      
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                echo "</tr>";
+                                            }
+
+                                        echo '
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
                 </div>
-            </section>';
-        }
-    ?>
+            </div>
+        </section>';
+    }
+?>
+
 
     <!-- SECCIÓN PARA USUARIOS -->
     <?php
