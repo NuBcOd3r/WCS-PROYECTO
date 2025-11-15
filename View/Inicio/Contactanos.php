@@ -82,8 +82,8 @@
                                 <div class="card-body p-4 d-flex flex-column justify-content-center">
                                     <h4 class="card-title mb-4 text-center">Información de Contacto</h4>
                                     
-                                    <div class="mb-4">
-                                        <div class="d-flex align-items-start mb-3">
+                                    <div class="mb-4 text-center">
+                                        <div class="d-flex align-items-center justify-content-center mb-3">
                                             <div class="me-3">
                                                 <i class="bi bi-geo-alt-fill fs-4" style="color: #f08632;"></i>
                                             </div>
@@ -93,7 +93,7 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="d-flex align-items-start mb-3">
+                                        <div class="d-flex align-items-center justify-content-center mb-3">
                                             <div class="me-3">
                                                 <i class="bi bi-telephone-fill fs-4" style="color: #f08632;"></i>
                                             </div>
@@ -103,7 +103,7 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="d-flex align-items-start mb-3">
+                                        <div class="d-flex align-items-center justify-content-center mb-3">
                                             <div class="me-3">
                                                 <i class="bi bi-envelope-fill fs-4" style="color: #f08632;"></i>
                                             </div>
