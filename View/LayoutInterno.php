@@ -160,7 +160,7 @@
                                 <li><a href="../SobreNosotros/SobreNosotros.php">Sobre Nosotros</a></li>
                                 <li><a href="../Productos/Categoria.php">Categorias</a></li>
                                 <li><a href="../Productos/Productos.php">Productos</a></li>
-                                <li><a href="#">Contáctanos</a></li>
+                                <li><a href="../Inicio/Contactanos.php">Contáctanos</a></li>
                             </ul>
                         </nav>
                     </div>
