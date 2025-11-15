@@ -41,6 +41,7 @@
             $_SESSION["idUsuario"] = $resultado["idUsuario"];
             $_SESSION["nombre"] = $resultado["nombre"];
             $_SESSION["NombrePerfil"] = $resultado["NombrePerfil"];
+            $_SESSION["idRol"] = $resultado["idRol"];
 
             header("Location: ../../View/Inicio/Home.php");
             exit;

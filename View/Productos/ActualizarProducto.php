@@ -2,7 +2,7 @@
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/View/LayoutInterno.php';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/ProductosController.php';
   $resultado = ConsultarProducto($_GET["id"]);
-  $resultados = ConsultarCategorias();
+  $resultadoCategorias = ConsultarCategorias();
 ?>
 
 <!DOCTYPE html>
@@ -33,13 +33,15 @@
                             <h2 class="login-title text-center mb-4 mt-2">Actualizar Producto</h2>
 
                             <?php
-                        if (isset($_POST["Mensaje"])) {
-                            echo '<div class="alert alert-primary centrado">' . $_POST["Mensaje"] . '</div>';
-                        }
-                        ?>
+                                if (isset($_POST["Mensaje"])) {
+                                    echo '<div class="alert alert-primary centrado">' . $_POST["Mensaje"] . '</div>';
+                                }
+                            ?>
 
                             <form id="formActualizarProducto" class="mb-3" action="" method="POST"
                                 enctype="multipart/form-data">
+
+
                                 <input type="hidden" id="idProducto" name="idProducto"
                                     value="<?php echo $resultado["idProducto"]?>">
 
@@ -53,12 +55,22 @@
                                             <select name="idCategoria" id="idCategoria"
                                                 class="form-select border-1 login-input" required style="height: 55px;">
                                                 <option value="">Seleccione una Categoría</option>
-                                                <?php
-                                                    foreach ($resultados as $fila) {
-                                                        $selected = ($fila['idCategoria'] == $resultado['idCategoria']) ? 'selected' : '';
-                                                        echo "<option value='" . $fila['idCategoria'] . "' $selected>" . htmlspecialchars($fila['nombreCategoria']) . "</option>";
+                                                
+                                               <?php
+                                                    foreach ($resultadoCategorias as $fila) {
+
+                                                        $selected = "";
+
+                                                        if (isset($resultado['idCategoria']) && $fila['idCategoria'] == $resultado['idCategoria']) {
+                                                            $selected = "selected";
+                                                        }
+
+                                                        echo "<option value='{$fila['idCategoria']}' $selected>" . 
+                                                            htmlspecialchars($fila['nombreCategoria']) . 
+                                                            "</option>";
                                                     }
                                                 ?>
+
                                             </select>
                                         </div>
 
@@ -86,6 +98,14 @@
                                             </label>
                                             <input type="text" class="form-control" id="precio" name="precio"
                                                 value="<?php echo $resultado['precio']; ?>" />
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label mt-2" style="color: #f08632;font-weight: 700;">
+                                                Cantidad
+                                            </label>
+                                            <input type="number" class="form-control" id="cantidad" name="cantidad"
+                                                value="<?php echo $resultado['cantidad']; ?>" />
                                         </div>
 
                                         <div class="mb-3">

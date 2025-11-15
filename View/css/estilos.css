@@ -53,3 +53,19 @@
 .user-menu {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
+.user-dropdown.dropdown-toggle::after {
+    color: #f08632 !important;
+}
+
+.user-dropdown.dropdown-toggle:hover::after {
+    color: #d36b22 !important;
+}
+
+.contenedor-productos {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}

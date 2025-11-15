@@ -1,5 +1,7 @@
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/View/LayoutExterno.php';
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/ProductosController.php';
+  $resultado = ConsultarProductosIndex();
 ?>
 
 <!DOCTYPE html>
@@ -10,9 +12,9 @@
 ?>
 
 <body>
-    
 
-   <?php
+
+    <?php
       ShowToggler()
    ?>
 
@@ -22,18 +24,18 @@
 
     <!--Sección #1-->
     <section class="hero">
-    <div class="hero__item" style="background-image: url('../../View/img/hero-1.jpg');">
-        <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-lg-8">
-            <div class="hero__text">
-                <h2>Endulzando tu vida un postre a la vez!</h2>
-                <a href="#" class="primary-btn">Nuestros Productos</a>
-            </div>
+        <div class="hero__item" style="background-image: url('../../View/img/hero-1.jpg');">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="hero__text">
+                            <h2>Endulzando tu vida un postre a la vez!</h2>
+                            <a href="#" class="primary-btn">Nuestros Productos</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>
     </section>
 
 
@@ -75,137 +77,62 @@
     <section class="product spad">
         <div class="container">
             <div class="row">
+
+                <?php foreach ($resultado as $fila): ?>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../../View/img/product-1.png">
+
+                        <!-- IMAGEN-->
+                        <div class="product__item__pic set-bg" data-setbg="<?= htmlspecialchars($fila['imagen']) ?>">
+
+                            <!-- CATEGORÍA -->
                             <div class="product__label">
-                                <span>Queque</span>
+                                <span><?= htmlspecialchars($fila['nombreCategoria']) ?></span>
                             </div>
                         </div>
+
                         <div class="product__item__text">
-                            <h6><a href="#">Lilo y Stitch</a></h6>
-                            <div class="product__item__price">₡9000.00</div>
-                            <div class="cart_add">
-                                <a href="#">Añadir al carrito</a>
+
+                            <!-- NOMBRE -->
+                            <h6>
+                                <a href="#">
+                                    <?= htmlspecialchars($fila['nombreProducto']) ?>
+                                </a>
+                            </h6>
+
+                            <!-- PRECIO -->
+                            <div class="product__item__price">
+                                ₡<?= number_format($fila['precio'], 2) ?>
                             </div>
+
+                            <!-- BOTÓN AÑADIR AL CARRITO -->
+                            <div class="cart_add mt-5">
+
+                                <form method="POST" action="AgregarCarrito.php" style="display:flex; gap:20px;">
+                                    <input type="hidden" name="idProducto"
+                                        value="<?= $fila['idProducto'] ?>">
+
+                                    <input type="number" name="cantidad" min="1" value="1"
+                                        style="width:35px; border:1px solid #f08632; padding:1px; margin-top:3px">
+
+                                    <button type="submit"
+                                        style="background:none; border:none; color:#f08632;; font-weight:bold; cursor:pointer;">
+                                        Añadir al carrito
+                                    </button>
+                                </form>
+
+                            </div>
+
                         </div>
+
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../../View/img/product-2.png">
-                            <div class="product__label">
-                                <span>Queque</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Kimetsu No Yaiba</a></h6>
-                            <div class="product__item__price">₡10000.00</div>
-                            <div class="cart_add">
-                                <a href="#">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../../View/img/product-3.png">
-                            <div class="product__label">
-                                <span>Queque</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Red Velvet</a></h6>
-                            <div class="product__item__price">₡8000.00</div>
-                            <div class="cart_add">
-                                <a href="#">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../../View/img/product-4.png">
-                            <div class="product__label">
-                                <span>Queque</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Bob Esponja</a></h6>
-                            <div class="product__item__price">₡8500.00</div>
-                            <div class="cart_add">
-                                <a href="#">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../../View/img/product-5.png">
-                            <div class="product__label">
-                                <span>Queque</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Chicas Superpoderosas</a></h6>
-                            <div class="product__item__price">₡15000.00</div>
-                            <div class="cart_add">
-                                <a href="#">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../../View/img/product-6.png">
-                            <div class="product__label">
-                                <span>Queque</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Minecraft</a></h6>
-                            <div class="product__item__price">₡12000.00</div>
-                            <div class="cart_add">
-                                <a href="#">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../../View/img/product-7.png">
-                            <div class="product__label">
-                                <span>Queque</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Sencillo Dulce de Leche</a></h6>
-                            <div class="product__item__price">₡11500.00</div>
-                            <div class="cart_add">
-                                <a href="#">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../../View/img/product-8.png">
-                            <div class="product__label">
-                                <span>Queque</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Chesse Cake</a></h6>
-                            <div class="product__item__price">₡10700.00</div>
-                            <div class="cart_add">
-                                <a href="#">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
+
             </div>
         </div>
     </section>
+
 
     <!--INSTAGRAM-->
     <section class="instagram spad">
@@ -217,13 +144,13 @@
                             <span>Siguenos en Instagram</span>
                             <h2>Momentos dulces que se guardan como recuerdos.</h2>
                         </div>
-                            <h5>
-                            <i class="fa fa-facebook-official" style="color:#E1306C; margin-right:6px;"></i>
-                            <a href="https://www.instagram.com/sweet_cakes_marys/" target="_blank" style="text-decoration:none; color:#a4a4a4;">
+                        <h5>
+                            <a href="https://www.instagram.com/sweet_cakes_marys/" target="_blank"
+                                style="text-decoration:none; color:#a4a4a4;">
                                 @sweet_cakes_marys
                             </a>
-                            </h5>
-                        </div>
+                        </h5>
+                    </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="row">
@@ -263,11 +190,11 @@
         </div>
     </section>
 
-<?php
+    <?php
     ShowFooter()
 ?>
 
-<?php
+    <?php
     ShowJS()
 ?>
 

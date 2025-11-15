@@ -7,6 +7,8 @@ if(session_status() == PHP_SESSION_NONE)
     session_start();
 }
 
+
+
 function ShowHead(){
     echo'
         <head>
@@ -26,6 +28,7 @@ function ShowHead(){
         <link rel="stylesheet" href="../../View/css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="../../View/css/style.css" type="text/css">
         <link rel="stylesheet" href="../../View/css/estilos.css" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     </head>
     ';
 }
@@ -74,30 +77,32 @@ function ShowToggler(){
     ';
 }
 
-function ShowHeader(){
-$nombre = "";
-$nombrePerfil = "";
+    function ShowHeader(){
+        $nombre = "";
+        $nombrePerfil = "";
 
-if(isset($_SESSION["nombre"])){
-    $nombre = $_SESSION["nombre"];
-    $nombrePerfil = $_SESSION["NombrePerfil"];
-}
-    echo'
-        <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="header__top__inner">
-                            <div class="header__top__left">
-                                <ul>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa-solid fa-user"></i>
-                                        </a>
-                                         <ul class="dropdown-menu dropdown-menu-end p-3 shadow user-menu bg-light" aria-labelledby="userDropdown" id="userDropdownMenu">
+        if(isset($_SESSION["nombre"])){
+            $nombre = $_SESSION["nombre"];
+            $nombrePerfil = $_SESSION["NombrePerfil"];
+            $perfil = $_SESSION["idRol"];
+        }
+
+        echo '
+            <header class="header">
+            <div class="header__top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="header__top__inner">
+                                <div class="header__top__left">
+                                    <ul>
+                                        <li class="nav-item dropdown user-dropdown" id="userMenu">
+                                            <a class="nav-link dropdown-toggle user-icon" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-user" id="userIcon"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-end p-3 shadow user-menu bg-light" aria-labelledby="userDropdown" id="userDropdownMenu">
                                                 <li><hr class="dropdown-divider user-divider"></li>
-                                                <li style="color:black;">'. $nombre .' <br> '. $nombrePerfil . '</li>
+                                                <li style="color:black;">'. $nombre .' <br> '. $nombrePerfil .'</li>
                                                 <li>
                                                     <a class="dropdown-item user-option" id="updateInfo" href="../Inicio/InicioSesion.php">
                                                         <i class="fa-solid fa-user-pen me-2 user-option-icon"></i>Iniciar Sesión
@@ -116,50 +121,70 @@ if(isset($_SESSION["nombre"])){
                                                 <li><hr class="dropdown-divider user-divider"></li>
                                                 <li>
                                                     <form action="" method="POST">
-                                                    <button type="submit" class="dropdown-item" id="btnSalir" name="btnSalir">
-                                                    <i class="bx bx-power-off me-2"></i>
-                                                    <span class="align-middle">Cerrar Sesión</span>
-                                                    </button>
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="header__logo">
-                                <a href="Home.php" id="logo"><img src="../../View/img/logo.png" alt=""></a>
-                            </div>
-                            <div class="header__top__right">
-                                <!--CARRITO-->
-                                <div class="header__top__right__cart">
-                                    <a href="#"><img src="../../View/img/cart.png" alt=""> <span>0</span></a>
-                                    <div class="cart__price">Carrito: <span>₡0.00</span></div>
+                                                        <button type="submit" class="dropdown-item" id="btnSalir" name="btnSalir">
+                                                            <i class="bx bx-power-off me-2"></i>
+                                                            <span class="align-middle">Cerrar Sesión</span>
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header__logo">
+                                    <a href="../Inicio/Home.php" id="logo"><img src="../../View/img/logo.png" alt=""></a>
+                                </div>
+                                <div class="header__top__right">
+                                    <div class="header__top__right__cart">
+                                        <a href="#"><img src="../../View/img/cart.png" alt=""> <span>0</span></a>
+                                        <div class="cart__price">Carrito: <span>₡0.00</span></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="canvas__open"><i class="fa fa-bars"></i></div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <nav class="header__menu mobile-menu">
-                        <ul>
-                            <li><a href="../Inicio/Home.php">Inicio</a></li>
-                            <li><a href="../SobreNosotros/SobreNosotros.php">Sobre Nosotros</a></li>
-                            <li><a href="../Productos/Categoria.php">Categorias</a></li>
-                            <li><a href="../Productos/Productos.php">Productos</a></li>
-                            <li><a href="../Inicio/Contactanos.php">Contáctanos</a></li>
-                        </ul>
-                    </nav>
+                    <div class="canvas__open"><i class="fa fa-bars"></i></div>
                 </div>
             </div>
-        </div>
-    </header>
-    ';
-}
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="header__menu mobile-menu">
+                            <ul>';
+                            if(isset($perfil) && $perfil == "2"){
+                                echo'
+                                <li><a href="../Inicio/Home.php">Inicio</a></li>
+                                <li><a href="../SobreNosotros/SobreNosotros.php">Sobre Nosotros</a></li>
+                                ';
+                            }
+                            echo'
+                                
+                                ';
+                                if(isset($perfil) && $perfil == "1"){
+                                    echo '
+                                        <li><a href="../Administrador/Dashboard.php">Dashboard</a></li>
+                                        <li><a href="../Productos/Categoria.php">Categorias</a></li>
+                                    ';
+                                }
+
+                                echo '
+                                <li><a href="../Productos/Productos.php">Productos</a></li>';
+                                if(isset($perfil) && $perfil == "2"){
+                                    echo '
+                                        <li><a href="../Inicio/Contactanos.php">Contáctanos</a></li>';
+                                }
+                                echo'
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        ';
+    }
+
+
 
 function ShowFooter(){
     echo'
@@ -185,13 +210,6 @@ function ShowFooter(){
                 <div class="footer__about">
                     <div class="footer__logo mb-3">
                         <a href="../Inicio/Home.php"><img src="../../View/img/footer-logo.png" alt="Logo"></a>
-                    </div>
-
-                    <div class="footer__social">
-                        <a href="#"><i class="fa fa-facebook-square"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-youtube-play"></i></a>
                     </div>
                 </div>
             </div>

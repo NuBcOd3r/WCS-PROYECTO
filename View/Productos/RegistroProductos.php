@@ -74,6 +74,12 @@
                         <input type="number" placeholder="Ejm: 2500" id="precio" name="precio" class="login-input" required>
                         </div>
 
+                        <!-- Cantidad -->
+                        <div>                         
+                        <label for="cantidad" class="form-label mt-1" style="color: #f08632;font-weight: 700;">Cantidad</label>
+                        <input type="number" placeholder="Ejm: 10" id="cantidad" name="cantidad" class="login-input" required>
+                        </div>
+
                         <!-- Imagen -->
                         <div>
                         <label for="imagen" class="form-label mt-1" style="color: #f08632;font-weight: 700;">Imagen</label>

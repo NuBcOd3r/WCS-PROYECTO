@@ -55,7 +55,16 @@
                                                 echo "<tr>";
                                                 echo "<td class='text-center'><strong>" . $fila['idCategoria'] . "</strong></td>";
                                                 echo "<td class='text-center'>" . htmlspecialchars($fila['nombreCategoria']) . "</td>";
-                                                echo "<td><a href='ActualizarCategoria.php?id=" . $fila["idCategoria"] . "'> Actualizar </td>";
+                                                echo "<td class='text-center align-middle'>
+                                                    <div style='display: flex; justify-content: center; gap: 20px; align-items: center;'>
+
+                                                        <a href='ActualizarCategoria.php?id=" . $fila['idCategoria'] . "'
+                                                        style='color: #0d6efd; font-size: 26px;'>
+                                                            <i class='fa-regular fa-pen-to-square'></i>
+                                                        </a>
+
+                                                    </div>
+                                                </td>";
                                                 echo "</tr>";
                                             }
                                         ?>

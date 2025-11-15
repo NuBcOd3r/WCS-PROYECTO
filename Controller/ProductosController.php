@@ -8,6 +8,7 @@
         $nombreProducto = $_POST["nombreProducto"];
         $descripcion = $_POST["descripcion"];
         $precio = $_POST["precio"];
+        $cantidad = $_POST["cantidad"];
         $imagen = '';
 
         if($_FILES["imagen"]["name"] != "")
@@ -18,7 +19,7 @@
             copy($origen,$destino);
         }  
 
-        $resultado = RegistrarProductoModel($idCategoria,$nombreProducto,$descripcion,$precio,$imagen);
+        $resultado = RegistrarProductoModel($idCategoria,$nombreProducto,$descripcion,$precio,$cantidad,$imagen);
 
         if($resultado)
         {
@@ -35,6 +36,12 @@
         return ConsultarProductosModel();
     }
 
+    //Consultar Productos Index
+    function ConsultarProductosIndex()
+    {
+        return ConsultarProductosIndexModel();
+    }
+
     //Consultar Producto
     function ConsultarProducto($id)
     {
@@ -49,6 +56,7 @@
         $nombreProducto = $_POST["nombreProducto"];
         $descripcion = $_POST["descripcion"];
         $precio = $_POST["precio"];
+        $cantidad = $_POST["cantidad"];
         $imagen = '';
 
         if($_FILES["imagen"]["name"] != "")
@@ -59,7 +67,7 @@
             copy($origen,$destino);
         }  
 
-        $resultado = ActualizarProductoModel($idProducto,$idCategoria,$nombreProducto,$descripcion,$precio,$imagen);
+        $resultado = ActualizarProductoModel($idProducto,$idCategoria,$nombreProducto,$descripcion,$precio,$cantidad,$imagen);
 
         if($resultado)
         {
@@ -114,4 +122,22 @@
 
         $_POST["Mensaje"] = "No se ha podido agregar la categoria.";
     }
+
+    //Cambiar Estado
+    if(isset($_POST["btnEliminar"]))
+    {
+        $idProducto = $_POST["idProducto"];
+        
+        $resultado = CambiarEstadoProductoModel($idProducto);
+
+        if($resultado)
+        {
+            header("Location: ../../View/Productos/Productos.php");
+            exit;
+        }
+        else
+        {
+            $_POST["Mensaje"] = "La información no se actualizó correctamente";
+        }        
+    }  
 ?>

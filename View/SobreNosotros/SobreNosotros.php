@@ -141,13 +141,7 @@ ShowHead()
                     <div class="team__item set-bg" data-setbg="../img/Marycruz.png">
                         <div class="team__item__text">
                             <h6>Marycruz</h6>
-                            <span>Decoradora y cocinera</span>
-                            <div class="team__item__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            </div>
+                            <span>Decoradora y Cocinera</span>
                         </div>
                     </div>
                 </div>

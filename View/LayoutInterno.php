@@ -32,7 +32,7 @@
             <link rel="stylesheet" href="../../View/css/slicknav.min.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/style.css" type="text/css">
             <link rel="stylesheet" href="../../View/css/estilos.css" type="text/css">
-            
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />        
         </head>
         ';
     }
@@ -90,8 +90,10 @@
         if(isset($_SESSION["nombre"])){
             $nombre = $_SESSION["nombre"];
             $nombrePerfil = $_SESSION["NombrePerfil"];
+            $perfil = $_SESSION["idRol"];
         }
-        echo'
+
+        echo '
             <header class="header">
             <div class="header__top">
                 <div class="container">
@@ -106,7 +108,7 @@
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-end p-3 shadow user-menu bg-light" aria-labelledby="userDropdown" id="userDropdownMenu">
                                                 <li><hr class="dropdown-divider user-divider"></li>
-                                                <li style="color:black;">'. $nombre .' <br> '. $nombrePerfil . '</li>
+                                                <li style="color:black;">'. $nombre .' <br> '. $nombrePerfil .'</li>
                                                 <li>
                                                     <a class="dropdown-item user-option" id="updateInfo" href="../Inicio/InicioSesion.php">
                                                         <i class="fa-solid fa-user-pen me-2 user-option-icon"></i>Iniciar Sesión
@@ -126,8 +128,8 @@
                                                 <li>
                                                     <form action="" method="POST">
                                                         <button type="submit" class="dropdown-item" id="btnSalir" name="btnSalir">
-                                                        <i class="bx bx-power-off me-2"></i>
-                                                        <span class="align-middle">Cerrar Sesión</span>
+                                                            <i class="bx bx-power-off me-2"></i>
+                                                            <span class="align-middle">Cerrar Sesión</span>
                                                         </button>
                                                     </form>
                                                 </li>
@@ -139,7 +141,6 @@
                                     <a href="../Inicio/Home.php" id="logo"><img src="../../View/img/logo.png" alt=""></a>
                                 </div>
                                 <div class="header__top__right">
-                                    <!--CARRITO-->
                                     <div class="header__top__right__cart">
                                         <a href="#"><img src="../../View/img/cart.png" alt=""> <span>0</span></a>
                                         <div class="cart__price">Carrito: <span>₡0.00</span></div>
@@ -151,16 +152,35 @@
                     <div class="canvas__open"><i class="fa fa-bars"></i></div>
                 </div>
             </div>
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <nav class="header__menu mobile-menu">
-                            <ul>
+                            <ul>';
+                            if(isset($perfil) && $perfil == "2"){
+                                echo'
                                 <li><a href="../Inicio/Home.php">Inicio</a></li>
                                 <li><a href="../SobreNosotros/SobreNosotros.php">Sobre Nosotros</a></li>
-                                <li><a href="../Productos/Categoria.php">Categorias</a></li>
-                                <li><a href="../Productos/Productos.php">Productos</a></li>
-                                <li><a href="../Inicio/Contactanos.php">Contáctanos</a></li>
+                                ';
+                            }
+                            echo'
+                                
+                                ';
+                                if(isset($perfil) && $perfil == "1"){
+                                    echo '
+                                        <li><a href="../Administrador/Dashboard.php">Dashboard</a></li>
+                                        <li><a href="../Productos/Categoria.php">Categorias</a></li>
+                                    ';
+                                }
+
+                                echo '
+                                <li><a href="../Productos/Productos.php">Productos</a></li>';
+                                if(isset($perfil) && $perfil == "2"){
+                                    echo '
+                                        <li><a href="../Inicio/Contactanos.php">Contáctanos</a></li>';
+                                }
+                                echo'
                             </ul>
                         </nav>
                     </div>
@@ -169,6 +189,7 @@
         </header>
         ';
     }
+
 
     function ShowFooter(){
         echo'
@@ -196,12 +217,6 @@
                             <a href="../Inicio/Home.php"><img src="../../View/img/footer-logo.png" alt="Logo"></a>
                         </div>
 
-                        <div class="footer__social">
-                            <a href="#"><i class="fa fa-facebook-official"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                        </div>
                     </div>
                 </div>
 

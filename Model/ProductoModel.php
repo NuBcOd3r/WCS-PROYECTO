@@ -2,12 +2,12 @@
     include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Model/UtilitiesModel.php';
 
     //Registrar Producto
-    function RegistrarProductoModel($idCategoria, $nombreProducto, $descripcion, $precio, $imagen)
+    function RegistrarProductoModel($idCategoria, $nombreProducto, $descripcion, $precio, $cantidad, $imagen)
     {
         try
         {
             $context = OpenConnection();
-            $sentencia = "CALL RegistrarProducto('$idCategoria', '$nombreProducto', '$descripcion', '$precio', '$imagen')";
+            $sentencia = "CALL RegistrarProducto('$idCategoria', '$nombreProducto', '$descripcion', '$precio', '$cantidad', '$imagen')";
             $resultado = $context -> query($sentencia);
             CloseConnection($context);
             return $resultado;
@@ -27,6 +27,33 @@
             $context = OpenConnection();
 
             $sentencia = "CALL ConsultarProductos()";
+            $resultado = $context -> query($sentencia);
+
+            $datos = [];
+            while($row = $resultado->fetch_assoc()){
+                $datos[] = $row;
+            }
+
+            $resultado->free();
+            CloseConnection($context);
+            
+            return $datos;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
+        }
+    }
+
+    //Consultar Productos
+    function ConsultarProductosIndexModel()
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL ConsultarProductosIndex()";
             $resultado = $context -> query($sentencia);
 
             $datos = [];
@@ -74,12 +101,12 @@
     }
 
     //Actualizar Producto
-    function ActualizarProductoModel($idProducto, $idCategoria, $nombreProducto, $descripcion, $precio, $imagen)
+    function ActualizarProductoModel($idProducto, $idCategoria, $nombreProducto, $descripcion, $precio, $cantidad, $imagen)
     {
         try
         {
             $context = OpenConnection();
-            $sentencia = "CALL ActualizarProducto('$idProducto','$idCategoria', '$nombreProducto', '$descripcion', '$precio', '$imagen')";
+            $sentencia = "CALL ActualizarProducto('$idProducto','$idCategoria', '$nombreProducto', '$descripcion', '$precio', '$cantidad', '$imagen')";
             $resultado = $context -> query($sentencia);
             CloseConnection($context);
             return $resultado;
@@ -183,4 +210,25 @@
             return false;
         }
     }   
+
+    //Cambiar Estado   
+    function CambiarEstadoProductoModel($idProducto)
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL CambiarEstadoProducto('$idProducto')";
+            $resultado = $context -> query($sentencia);
+
+            CloseConnection($context);
+
+            return $resultado;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return false;
+        }
+    } 
 ?>
