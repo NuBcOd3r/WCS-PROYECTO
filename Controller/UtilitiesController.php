@@ -16,9 +16,9 @@
 
     function EnviarCorreo($asunto, $contenido, $destinatario)
     {
-        require 'PHPMailer/src/PHPMailer.php';
-        require 'PHPMailer/src/SMTP.php';
-        require 'PHPMailer/src/Exception.php';
+        require_once 'PHPMailer/src/PHPMailer.php';
+        require_once 'PHPMailer/src/SMTP.php';
+        require_once 'PHPMailer/src/Exception.php';
 
         $correoSalida = "bcorella60874@ufide.ac.cr";
         $contrasennaSalida = "gv1t4rGVTTS@"; // es indispensable colocar un passowod aqui!!!

@@ -108,7 +108,7 @@
             EnviarCorreo('Confirmación de mensaje recibido', $mensajeUsuario, $email);
 
             $_SESSION["MensajeExito"] = "¡Mensaje enviado exitosamente! Te responderemos pronto.";
-            header("Location: ../../View/Contacto/Contactanos.php");
+            header("Location: ../../View/Inicio/Contactanos.php");
             exit;
         }
 
