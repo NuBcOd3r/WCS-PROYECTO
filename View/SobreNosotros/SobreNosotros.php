@@ -1,5 +1,10 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/View/LayoutInterno.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/View/LayoutExterno.php';
+
+  if(session_status() == PHP_SESSION_NONE){
+        session_start();
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -19,22 +24,21 @@ ShowHead()
     ShowHeader()
     ?>
 
-
     <section class="about spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="about__text">
                         <div class="section-title">
-                            <span>Sobre Mary's Sweet Cakes</span>
+                            <span>Sobre Mary\'s Sweet Cakes</span>
                             <h2>Reposteria hecha con amor</h2>
                         </div>
                         <p>Mi nombre es Marycruz y este emprendimiento nació de mi amor por la repostería y por compartir dulzura en los momentos más especiales.
                             Desde siempre he disfrutado hornear y crear postres que no solo sepan rico, sino que también transmitan cariño y dedicación en cada bocado.</p>
                         <br>
                         <p>Con el tiempo, esa pasión se convirtió en un sueño: llevar a más personas la alegría de disfrutar un buen postre hecho en casa, con ingredientes
-                            de calidad y mucho corazón. Así nació Mary’s Sweet Cakes, un proyecto que poco a poco ha ido creciendo y tomando forma.
-                            Mary’ Sweet Cakes es mi forma de compartir lo que más me apasiona: endulzar la vida con pequeños detalles que nacen del corazón.</p>
+                            de calidad y mucho corazón. Así nació Mary\'s Sweet Cakes, un proyecto que poco a poco ha ido creciendo y tomando forma.
+                            Mary\' Sweet Cakes es mi forma de compartir lo que más me apasiona: endulzar la vida con pequeños detalles que nacen del corazón.</p>
                     </div>
                 </div>
 
@@ -150,6 +154,8 @@ ShowHead()
             </div>
         </div>
     </section>
+
+
     <?php
     ShowFooter()
     ?>
