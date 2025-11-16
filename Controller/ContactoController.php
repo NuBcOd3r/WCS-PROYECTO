@@ -85,8 +85,8 @@
                                     <p>Nuestro equipo revisará tu consulta y te responderemos a la brevedad posible.</p>
 
                                     <div style='background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin: 20px 0;'>
-                                        <p style='margin: 0;'><strong>Resumen de tu mensaje:</strong></p>
                                         <p style='margin: 10px 0 0 0;'><strong>Asunto:</strong> " . htmlspecialchars($asunto) . "</p>
+                                        <p style='margin: 0;'><strong>Resumen de tu mensaje:</strong>" . htmlspecialchars($mensaje) . "</p>
                                     </div>
 
                                     <p style='margin-top: 40px;'>Gracias por confiar en nosotros.<br>
