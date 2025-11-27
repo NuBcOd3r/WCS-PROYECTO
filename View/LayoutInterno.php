@@ -172,6 +172,7 @@
                                         <li><a href="../Administrador/Dashboard.php">Dashboard</a></li>
                                         <li><a href="../Productos/Categoria.php">Categorias</a></li>
                                         <li><a href="../Productos/Productos.php">Productos</a></li>
+                                        <li><a href="../Pedidos/Pedidos.php">Pedidos</a></li>
                                     ';
                                 }else{
                                     echo'
