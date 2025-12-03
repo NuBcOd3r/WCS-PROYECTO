@@ -1,6 +1,8 @@
 <?php
-
     include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/InicioController.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/CarritoController.php';
+
+    ConsultarResumenCarritos();
 
     if(session_status() == PHP_SESSION_NONE)
     {
@@ -66,8 +68,6 @@
                 <div class="offcanvas-menu-wrapper">
                     <div class="offcanvas__cart">
                         <div class="offcanvas__cart__item">
-                            <a href="#"><img src="../../View/img/cart.png" alt=""> <span>0</span></a>
-                        <div class="cart__price">Carrito: <span>₡0.00</span></div>
                     </div>
                 </div>
                 <div class="offcanvas__logo">
@@ -88,11 +88,15 @@
         $nombre = "";
         $nombrePerfil = "";
         $perfil = "";
+        $Cantidad = "0";
+        $Total = "0.00";
 
         if(isset($_SESSION["nombre"])){
             $nombre = $_SESSION["nombre"];
             $nombrePerfil = $_SESSION["NombrePerfil"];
             $perfil = $_SESSION["idRol"];
+            $cantidad = $_SESSION["Cantidad"];
+            $total = number_format($_SESSION["Total"],2);
         }
 
         echo '
@@ -144,8 +148,7 @@
                                 </div>
                                 <div class="header__top__right">
                                     <div class="header__top__right__cart">
-                                        <a href="#"><img src="../../View/img/cart.png" alt=""> <span>0</span></a>
-                                        <div class="cart__price">Carrito: <span>₡0.00</span></div>
+                                        <a href="../Carrito/Carritos.php"><img src="../../View/img/cart.png" alt=""> <span>'. $cantidad .'</span></a>₡ ' . $total . ' IVI
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,7 @@
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/View/LayoutExterno.php';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/ProductosController.php';
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/CarritoController.php';
   $resultado = ConsultarProductosIndex();
 ?>
 
@@ -108,15 +109,14 @@
                             <!-- BOTÓN AÑADIR AL CARRITO -->
                             <div class="cart_add mt-5">
 
-                                <form method="POST" action="AgregarCarrito.php" style="display:flex; gap:20px;">
-                                    <input type="hidden" name="idProducto"
-                                        value="<?= $fila['idProducto'] ?>">
+                                <form method="POST" action="" style="display:flex; gap:20px;" >
+                                    <input type="hidden" name="idProducto" id="idProducto" value="<?= $fila['idProducto'] ?>">
 
-                                    <input type="number" name="cantidad" min="1" value="1"
-                                        style="width:35px; border:1px solid #f08632; padding:1px; margin-top:3px">
+                                    <input type="hidden" name="Inventario" id="Inventario<?= $fila['idProducto']?>" value="<?= $fila['cantidad'] ?>">
 
-                                    <button type="submit"
-                                        style="background:none; border:none; color:#f08632;; font-weight:bold; cursor:pointer;">
+                                    <input type="text" name="cantidad"  id="cantidad<?= $fila['idProducto']?>" value="1" style="width:35px; border:1px solid #f08632; padding:1px; margin-top:3px" onkeyup="soloNumeros(this)" maxLength="2">
+
+                                    <button type="submit" id="btnAgregarProductoCarrito" name="btnAgregarProductoCarrito" style="background:none; border:none; color:#f08632;; font-weight:bold; cursor:pointer;">
                                         Añadir al carrito
                                     </button>
                                 </form>
@@ -197,6 +197,8 @@
     <?php
     ShowJS()
 ?>
+
+<script src="../js/ValidarNumero.js"></script>
 
 </body>
 
