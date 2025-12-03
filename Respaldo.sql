@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `proyectows` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `proyectows`;
--- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: proyectows
+-- Host: localhost    Database: proyectows
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.32-MariaDB
+-- Server version	8.0.43
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,35 +16,34 @@ USE `proyectows`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `detallepedidos`
+-- Table structure for table `tbcarrito`
 --
 
-DROP TABLE IF EXISTS `detallepedidos`;
+DROP TABLE IF EXISTS `tbcarrito`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `detallepedidos` (
-  `idDetalle` int(11) NOT NULL AUTO_INCREMENT,
-  `idPedido` int(11) NOT NULL,
-  `idProducto` int(11) NOT NULL,
-  `nombreProducto` varchar(150) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `precioUnitario` decimal(10,2) NOT NULL,
-  `subtotal` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`idDetalle`),
-  KEY `idPedido` (`idPedido`),
-  KEY `idProducto` (`idProducto`),
-  CONSTRAINT `detallepedidos_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `tbpedidos` (`idPedido`) ON DELETE CASCADE,
-  CONSTRAINT `detallepedidos_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `tbproductos` (`idProducto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `tbcarrito` (
+  `idCarrito` int NOT NULL AUTO_INCREMENT,
+  `idProducto` int NOT NULL,
+  `idUsuario` int NOT NULL,
+  `Fecha` datetime NOT NULL,
+  `Cantidad` int NOT NULL,
+  PRIMARY KEY (`idCarrito`),
+  KEY `FK_CarritoProducto` (`idProducto`),
+  KEY `FK_CarritoUsuario` (`idUsuario`),
+  CONSTRAINT `FK_CarritoProducto` FOREIGN KEY (`idProducto`) REFERENCES `tbproductos` (`idProducto`),
+  CONSTRAINT `FK_CarritoUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `tbusuarios` (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `detallepedidos`
+-- Dumping data for table `tbcarrito`
 --
 
-LOCK TABLES `detallepedidos` WRITE;
-/*!40000 ALTER TABLE `detallepedidos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `detallepedidos` ENABLE KEYS */;
+LOCK TABLES `tbcarrito` WRITE;
+/*!40000 ALTER TABLE `tbcarrito` DISABLE KEYS */;
+INSERT INTO `tbcarrito` VALUES (7,5,2,'2025-12-03 15:34:46',0);
+/*!40000 ALTER TABLE `tbcarrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -57,8 +54,8 @@ DROP TABLE IF EXISTS `tbcategorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbcategorias` (
-  `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreCategoria` varchar(100) NOT NULL,
+  `idCategoria` int NOT NULL AUTO_INCREMENT,
+  `nombreCategoria` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`idCategoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -81,14 +78,14 @@ DROP TABLE IF EXISTS `tbcontactos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbcontactos` (
-  `idContacto` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `telefono` varchar(20) NOT NULL,
-  `asunto` varchar(200) NOT NULL,
-  `mensaje` text NOT NULL,
+  `idContacto` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `telefono` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `asunto` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `mensaje` text COLLATE utf8mb4_general_ci NOT NULL,
   `fecha_contacto` datetime NOT NULL,
-  `estado` enum('Pendiente','Respondido') DEFAULT 'Pendiente',
+  `estado` enum('Pendiente','Respondido') COLLATE utf8mb4_general_ci DEFAULT 'Pendiente',
   PRIMARY KEY (`idContacto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -111,11 +108,11 @@ DROP TABLE IF EXISTS `tberror`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tberror` (
-  `idError` int(11) NOT NULL AUTO_INCREMENT,
-  `mensaje` varchar(8000) NOT NULL,
+  `idError` int NOT NULL AUTO_INCREMENT,
+  `mensaje` varchar(8000) COLLATE utf8mb4_general_ci NOT NULL,
   `fechaHora` datetime NOT NULL,
   PRIMARY KEY (`idError`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,42 +121,8 @@ CREATE TABLE `tberror` (
 
 LOCK TABLES `tberror` WRITE;
 /*!40000 ALTER TABLE `tberror` DISABLE KEYS */;
-INSERT INTO `tberror` VALUES (1,'Cannot add or update a child row: a foreign key constraint fails (`proyectows`.`tbusuarios`, CONSTRAINT `FK_Usuario_Rol` FOREIGN KEY (`idRol`) REFERENCES `tbrol` (`idRol`))','2025-10-18 09:27:09'),(2,'Duplicate entry \'corellabrandon@gmail.com\' for key \'correoElectronico\'','2025-10-18 12:25:26'),(3,'Duplicate entry \'corellabrandon@gmail.com\' for key \'correoElectronico\'','2025-10-18 12:26:22'),(4,'Incorrect number of arguments for PROCEDURE proyectows.ValidarCorreo; expected 1, got 2','2025-10-18 16:53:50'),(5,'PROCEDURE proyectows.ConsultarCategorias does not exist','2025-11-07 18:59:16'),(6,'PROCEDURE proyectows.ConsultarCategorias does not exist','2025-11-07 19:06:34'),(7,'Table \'proyectows.tbcategoria\' doesn\'t exist','2025-11-07 20:20:31'),(8,'Table \'proyectows.tbcategoria\' doesn\'t exist','2025-11-07 21:45:09'),(9,'Table \'proyectows.tbcategoria\' doesn\'t exist','2025-11-07 21:45:22'),(10,'Table \'proyectows.tbcategoria\' doesn\'t exist','2025-11-07 21:46:21'),(11,'Table \'proyectows.tbcategoria\' doesn\'t exist','2025-11-07 21:48:34'),(12,'Incorrect number of arguments for PROCEDURE proyectows.ActualizarProducto; expected 6, got 5','2025-11-07 22:33:53'),(13,'Incorrect number of arguments for PROCEDURE proyectows.ActualizarProducto; expected 6, got 5','2025-11-07 22:38:37'),(14,'Incorrect number of arguments for PROCEDURE proyectows.ActualizarProducto; expected 6, got 5','2025-11-07 22:40:53'),(15,'PROCEDURE proyectows.ConsultarUsuario does not exist','2025-11-08 08:10:40'),(16,'PROCEDURE proyectows.ConsultarUsuario does not exist','2025-11-08 08:11:29'),(17,'PROCEDURE proyectows.ConsultarUsuario does not exist','2025-11-08 08:12:09'),(18,'PROCEDURE proyectows.ConsultarUsuario does not exist','2025-11-08 08:12:27'),(19,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:15:25'),(20,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:17:05'),(21,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:17:46'),(22,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:18:32'),(23,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:18:41'),(24,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:20:16'),(25,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:26:04'),(26,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:37:03'),(27,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:49:08'),(28,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:49:42'),(29,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:50:19'),(30,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:50:35'),(31,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:51:16'),(32,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:51:43'),(33,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:02:34'),(34,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:04:39'),(35,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:05:21'),(36,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:05:51'),(37,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:06:08'),(38,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:06:15'),(39,'Incorrect number of arguments for PROCEDURE proyectows.RegistrarProducto; expected 6, got 5','2025-11-14 19:33:48'),(40,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-14 19:55:11'),(41,'Incorrect integer value: \'../img/F_x4plus2955.png\' for column \'pCantidad\' at row 1','2025-11-14 19:56:13'),(42,'Incorrect integer value: \'../img/F_x4plus2955.png\' for column \'pCantidad\' at row 1','2025-11-14 19:59:57'),(43,'Incorrect integer value: \'../img/F_x4plus2955.png\' for column \'pCantidad\' at row 1','2025-11-14 20:00:50'),(44,'Incorrect integer value: \'\' for column \'pIdProducto\' at row 1','2025-11-14 21:12:24'),(45,'Incorrect integer value: \'\' for column \'pIdProducto\' at row 1','2025-11-14 21:14:19'),(46,'Incorrect integer value: \'\' for column \'pIdProducto\' at row 1','2025-11-14 21:15:39'),(47,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-14 21:15:42'),(48,'Incorrect integer value: \'\' for column \'pIdProducto\' at row 1','2025-11-14 21:15:47'),(49,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 12:46:22'),(50,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 12:47:09'),(51,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 12:51:36'),(52,'Table \'proyectows.contactos\' doesn\'t exist','2025-11-15 12:57:04'),(53,'Table \'proyectows.contactos\' doesn\'t exist','2025-11-15 12:59:03'),(54,'Table \'proyectows.contactos\' doesn\'t exist','2025-11-15 12:59:39'),(55,'Table \'proyectows.contactos\' doesn\'t exist','2025-11-15 12:59:57'),(56,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 13:02:39'),(57,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 13:03:40'),(58,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 13:08:29'),(59,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 13:10:24'),(60,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 13:16:45'),(61,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 16:46:41'),(62,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 16:47:33'),(63,'Incorrect number of arguments for PROCEDURE proyectows.RegistrarProducto; expected 5, got 6','2025-11-15 17:21:42');
+INSERT INTO `tberror` VALUES (1,'Cannot add or update a child row: a foreign key constraint fails (`proyectows`.`tbusuarios`, CONSTRAINT `FK_Usuario_Rol` FOREIGN KEY (`idRol`) REFERENCES `tbrol` (`idRol`))','2025-10-18 09:27:09'),(2,'Duplicate entry \'corellabrandon@gmail.com\' for key \'correoElectronico\'','2025-10-18 12:25:26'),(3,'Duplicate entry \'corellabrandon@gmail.com\' for key \'correoElectronico\'','2025-10-18 12:26:22'),(4,'Incorrect number of arguments for PROCEDURE proyectows.ValidarCorreo; expected 1, got 2','2025-10-18 16:53:50'),(5,'PROCEDURE proyectows.ConsultarCategorias does not exist','2025-11-07 18:59:16'),(6,'PROCEDURE proyectows.ConsultarCategorias does not exist','2025-11-07 19:06:34'),(7,'Table \'proyectows.tbcategoria\' doesn\'t exist','2025-11-07 20:20:31'),(8,'Table \'proyectows.tbcategoria\' doesn\'t exist','2025-11-07 21:45:09'),(9,'Table \'proyectows.tbcategoria\' doesn\'t exist','2025-11-07 21:45:22'),(10,'Table \'proyectows.tbcategoria\' doesn\'t exist','2025-11-07 21:46:21'),(11,'Table \'proyectows.tbcategoria\' doesn\'t exist','2025-11-07 21:48:34'),(12,'Incorrect number of arguments for PROCEDURE proyectows.ActualizarProducto; expected 6, got 5','2025-11-07 22:33:53'),(13,'Incorrect number of arguments for PROCEDURE proyectows.ActualizarProducto; expected 6, got 5','2025-11-07 22:38:37'),(14,'Incorrect number of arguments for PROCEDURE proyectows.ActualizarProducto; expected 6, got 5','2025-11-07 22:40:53'),(15,'PROCEDURE proyectows.ConsultarUsuario does not exist','2025-11-08 08:10:40'),(16,'PROCEDURE proyectows.ConsultarUsuario does not exist','2025-11-08 08:11:29'),(17,'PROCEDURE proyectows.ConsultarUsuario does not exist','2025-11-08 08:12:09'),(18,'PROCEDURE proyectows.ConsultarUsuario does not exist','2025-11-08 08:12:27'),(19,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:15:25'),(20,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:17:05'),(21,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:17:46'),(22,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:18:32'),(23,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:18:41'),(24,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:20:16'),(25,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:26:04'),(26,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:37:03'),(27,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:49:08'),(28,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:49:42'),(29,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:50:19'),(30,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:50:35'),(31,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:51:16'),(32,'Unknown column \'U.correo\' in \'field list\'','2025-11-08 08:51:43'),(33,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:02:34'),(34,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:04:39'),(35,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:05:21'),(36,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:05:51'),(37,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:06:08'),(38,'PROCEDURE proyectows.ActualizarPerfil does not exist','2025-11-08 09:06:15'),(39,'Incorrect number of arguments for PROCEDURE proyectows.RegistrarProducto; expected 6, got 5','2025-11-14 19:33:48'),(40,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-14 19:55:11'),(41,'Incorrect integer value: \'../img/F_x4plus2955.png\' for column \'pCantidad\' at row 1','2025-11-14 19:56:13'),(42,'Incorrect integer value: \'../img/F_x4plus2955.png\' for column \'pCantidad\' at row 1','2025-11-14 19:59:57'),(43,'Incorrect integer value: \'../img/F_x4plus2955.png\' for column \'pCantidad\' at row 1','2025-11-14 20:00:50'),(44,'Incorrect integer value: \'\' for column \'pIdProducto\' at row 1','2025-11-14 21:12:24'),(45,'Incorrect integer value: \'\' for column \'pIdProducto\' at row 1','2025-11-14 21:14:19'),(46,'Incorrect integer value: \'\' for column \'pIdProducto\' at row 1','2025-11-14 21:15:39'),(47,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-14 21:15:42'),(48,'Incorrect integer value: \'\' for column \'pIdProducto\' at row 1','2025-11-14 21:15:47'),(49,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 12:46:22'),(50,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 12:47:09'),(51,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 12:51:36'),(52,'Table \'proyectows.contactos\' doesn\'t exist','2025-11-15 12:57:04'),(53,'Table \'proyectows.contactos\' doesn\'t exist','2025-11-15 12:59:03'),(54,'Table \'proyectows.contactos\' doesn\'t exist','2025-11-15 12:59:39'),(55,'Table \'proyectows.contactos\' doesn\'t exist','2025-11-15 12:59:57'),(56,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 13:02:39'),(57,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 13:03:40'),(58,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 13:08:29'),(59,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 13:10:24'),(60,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 13:16:45'),(61,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 16:46:41'),(62,'PROCEDURE proyectows.ConsultarProductosIndex does not exist','2025-11-15 16:47:33'),(63,'Incorrect number of arguments for PROCEDURE proyectows.RegistrarProducto; expected 5, got 6','2025-11-15 17:21:42'),(64,'Unknown column \'pIdCarrito\' in \'field list\'','2025-12-03 11:09:20'),(65,'Incorrect integer value: \'\' for column \'pIdUsuario\' at row 1','2025-12-03 15:08:42'),(66,'Incorrect integer value: \'\' for column \'pIdUsuario\' at row 1','2025-12-03 15:10:14'),(67,'Incorrect integer value: \'\' for column \'pIdUsuario\' at row 1','2025-12-03 15:26:47'),(68,'Incorrect integer value: \'\' for column \'pIdUsuario\' at row 1','2025-12-03 15:26:50'),(69,'Incorrect integer value: \'\' for column \'pIdUsuario\' at row 1','2025-12-03 15:26:51'),(70,'Incorrect integer value: \'\' for column \'pIdUsuario\' at row 1','2025-12-03 15:27:17'),(71,'Incorrect integer value: \'\' for column \'pIdUsuario\' at row 1','2025-12-03 15:27:22'),(72,'Incorrect integer value: \'\' for column \'pIdUsuario\' at row 1','2025-12-03 15:27:31'),(73,'Incorrect integer value: \'\' for column \'pIdUsuario\' at row 1','2025-12-03 15:30:23'),(74,'Table \'proyectows.tbpedidos\' doesn\'t exist','2025-12-03 15:33:05'),(75,'Table \'proyectows.tbpedidos\' doesn\'t exist','2025-12-03 15:33:05'),(76,'Table \'proyectows.tbpedidos\' doesn\'t exist','2025-12-03 15:33:05');
 /*!40000 ALTER TABLE `tberror` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tbpedidos`
---
-
-DROP TABLE IF EXISTS `tbpedidos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbpedidos` (
-  `idPedido` int(11) NOT NULL AUTO_INCREMENT,
-  `idUsuario` int(11) NOT NULL,
-  `nombreCliente` varchar(150) NOT NULL,
-  `emailCliente` varchar(150) NOT NULL,
-  `telefonoCliente` varchar(20) NOT NULL,
-  `direccionEntrega` text NOT NULL,
-  `fechaDeseada` date NOT NULL,
-  `observaciones` text DEFAULT NULL,
-  `estado` enum('Solicitado','Aprobado','Listo','Entregado','Cancelado') DEFAULT 'Solicitado',
-  `total` decimal(10,2) NOT NULL,
-  `fechaPedido` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`idPedido`),
-  KEY `idUsuario` (`idUsuario`),
-  CONSTRAINT `tbpedidos_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `tbusuarios` (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbpedidos`
---
-
-LOCK TABLES `tbpedidos` WRITE;
-/*!40000 ALTER TABLE `tbpedidos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbpedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -170,14 +133,14 @@ DROP TABLE IF EXISTS `tbproductos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbproductos` (
-  `idProducto` int(11) NOT NULL AUTO_INCREMENT,
-  `idCategoria` int(11) DEFAULT NULL,
-  `nombreProducto` varchar(150) NOT NULL,
-  `descripcion` text DEFAULT NULL,
+  `idProducto` int NOT NULL AUTO_INCREMENT,
+  `idCategoria` int DEFAULT NULL,
+  `nombreProducto` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_general_ci,
   `precio` decimal(10,2) NOT NULL,
-  `cantidad` int(11) DEFAULT NULL,
+  `cantidad` int DEFAULT NULL,
   `estado` bit(1) DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL,
+  `imagen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idProducto`),
   KEY `idCategoria` (`idCategoria`),
   CONSTRAINT `tbproductos_ibfk_1` FOREIGN KEY (`idCategoria`) REFERENCES `tbcategorias` (`idCategoria`)
@@ -190,7 +153,7 @@ CREATE TABLE `tbproductos` (
 
 LOCK TABLES `tbproductos` WRITE;
 /*!40000 ALTER TABLE `tbproductos` DISABLE KEYS */;
-INSERT INTO `tbproductos` VALUES (5,1,'Galletas Blue Velvet','Galleta inspirada en David Lynch',1500.00,145,_binary '','../img/galletas-cookie-monster-4.jpg'),(6,2,'Pastel de Chocolate','Delicioso pastel de chocolate relleno de dulce de leche.',17500.00,10,_binary '','../img/tarta-de-chocolate-y-fresas-naturales.jpg'),(7,1,'Damn Cherry Pie','Pie de Frutos Rojos inspirado en la Red Room de Twin Peaks.',18000.00,15,_binary '','../img/6963cb6a4bd4be88bca0f176c46f2a42.jpg'),(8,2,'Brownie de Chocolate','Brownie Esponjoso de Chocolate',1000.00,2,_binary '','../img/brownie_casero_8374_600.jpg'),(9,2,'Pie de Limón','Pie de Limón al mejor estilo de Million Dolar Baby.',14000.00,6,_binary '','../img/lg_5f31d8c2f003a0716f670d8e.jpg'),(10,1,'Mullholand Drive','Galleta con un sabor intenso a Frutos.',1500.00,1,_binary '','../img/TasteBeforeBeauty_ButterSugarCookies-03147-720x720.jpg'),(11,2,'Pastel Resident Evil','Pastel de chocolate con relleno de jalea de frambuesas',15000.00,15,_binary '','../img/images.jpg'),(12,2,'Pastel Megdeth','Pastel de chocolate',18000.00,2,_binary '','../img/fb582c8cffb21a15d100d6d724ff02c4.jpg');
+INSERT INTO `tbproductos` VALUES (5,1,'Galletas Blue Velvet','Galleta inspirada en David Lynch',1500.00,145,_binary '','../img/galletas-cookie-monster-4.jpg'),(6,2,'Pastel de Chocolate','Delicioso pastel de chocolate relleno de dulce de leche.',17500.00,10,_binary '','../img/tarta-de-chocolate-y-fresas-naturales.jpg'),(7,1,'Damn Cherry Pie','Pie de Frutos Rojos inspirado en la Red Room de Twin Peaks.',18000.00,15,_binary '','../img/6963cb6a4bd4be88bca0f176c46f2a42.jpg'),(8,2,'Brownie de Chocolate','Brownie Esponjoso de Chocolate',1000.00,2,_binary '','../img/brownie_casero_8374_600.jpg'),(9,2,'Pie de Limón','Pie de Limón al mejor estilo de Million Dolar Baby.',14000.00,6,_binary '','../img/lg_5f31d8c2f003a0716f670d8e.jpg'),(10,1,'Mullholand Drive','Galleta con un sabor intenso a Frutos.',1500.00,1,_binary '','../img/TasteBeforeBeauty_ButterSugarCookies-03147-720x720.jpg'),(11,2,'Pastel Resident Evil','Pastel de chocolate con relleno de jalea de frambuesas',15000.00,15,_binary '','../img/images.jpg'),(12,2,'Pastel Megadeth','Pastel de chocolate',18000.00,2,_binary '','../img/fb582c8cffb21a15d100d6d724ff02c4.jpg');
 /*!40000 ALTER TABLE `tbproductos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,8 +165,8 @@ DROP TABLE IF EXISTS `tbrol`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbrol` (
-  `idRol` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreRol` varchar(50) NOT NULL,
+  `idRol` int NOT NULL AUTO_INCREMENT,
+  `nombreRol` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`idRol`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -226,14 +189,14 @@ DROP TABLE IF EXISTS `tbusuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbusuarios` (
-  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `cedula` varchar(15) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `correoElectronico` varchar(150) NOT NULL,
-  `telefono` varchar(20) DEFAULT NULL,
-  `contrasenna` varchar(255) NOT NULL,
+  `idUsuario` int NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+  `nombre` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `correoElectronico` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `telefono` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contrasenna` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `estado` bit(1) NOT NULL,
-  `idRol` int(11) NOT NULL,
+  `idRol` int NOT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE KEY `correoElectronico` (`correoElectronico`),
   KEY `FK_Usuario_Rol` (`idRol`),
@@ -296,6 +259,30 @@ BEGIN
 	UPDATE tbUsuarios
     SET contrasenna = pContrasennaGenerada
     WHERE idUsuario = pIdUsuario;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ActualizarEstadoPedido` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarEstadoPedido`(
+    IN p_idPedido INT,
+    IN p_estado   VARCHAR(20)
+)
+BEGIN
+    UPDATE tbpedidos
+    SET estado = p_estado
+    WHERE idPedido = p_idPedido;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -393,6 +380,37 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarCarritos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarCarritos`(pIdUsuario INT)
+BEGIN
+	SELECT idCarrito,
+		   C.idProducto, 
+           idUsuario, 
+           Fecha, 
+           C.Cantidad,
+           P.nombreProducto,
+           P.precio,
+           (P.precio * C.cantidad) 'Subtotal',
+           (P.precio * C.cantidad) * 0.13 'Impuesto',
+           (P.precio * C.cantidad) * 1.13 'Total'
+	FROM tbcarrito C
+    INNER JOIN tbproductos P ON C.idProducto = P.idProducto
+    WHERE idUsuario = pIdUsuario;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `ConsultarCategoria` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -434,6 +452,87 @@ BEGIN
 		idCategoria,
         nombreCategoria
 	FROM tbCategorias;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarContactosRecientes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarContactosRecientes`()
+BEGIN
+    SELECT nombre,
+           asunto,
+           fecha_contacto,
+           estado
+    FROM tbcontactos
+    ORDER BY fecha_contacto DESC
+    LIMIT 10;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarPedidosAdmin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarPedidosAdmin`()
+BEGIN
+    SELECT idPedido,
+           nombreCliente,
+           emailCliente,
+           telefonoCliente,
+           fechaPedido,
+           fechaDeseada,
+           estado,
+           total
+    FROM tbpedidos
+    ORDER BY fechaPedido DESC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarPedidosRecientes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarPedidosRecientes`()
+BEGIN
+    SELECT idPedido,
+           nombreCliente,
+           emailCliente,
+           telefonoCliente,
+           fechaPedido,
+           estado,
+           total
+    FROM tbpedidos
+    ORDER BY fechaPedido DESC
+    LIMIT 10;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -503,6 +602,31 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarProductosConStockBajo` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarProductosConStockBajo`()
+BEGIN
+    SELECT p.nombreProducto,
+           c.nombreCategoria,
+           p.cantidad
+    FROM tbproductos p
+    INNER JOIN tbcategorias c ON p.idCategoria = c.idCategoria
+    WHERE p.cantidad <= 5
+    ORDER BY p.cantidad ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `ConsultarProductosIndex` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -528,6 +652,29 @@ BEGIN
     INNER JOIN tbCategorias c
     WHERE c.idCategoria = p.idCategoria
     AND estado = 1;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarResumenCarritos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarResumenCarritos`(pIdUsuario INT)
+BEGIN
+	SELECT COUNT(1) 'Cantidad',
+           sum((P.precio * C.cantidad) * 1.13) 'Total'
+	FROM tbcarrito C
+    INNER JOIN tbproductos P ON C.idProducto = P.idProducto
+    WHERE idUsuario = pIdUsuario;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -568,6 +715,91 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ContarCategoriasTotal` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ContarCategoriasTotal`()
+BEGIN
+    SELECT COUNT(*) AS totalCategorias
+    FROM tbcategorias;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ContarPedidosCompletadosMes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ContarPedidosCompletadosMes`()
+BEGIN
+    SELECT COUNT(*) AS pedidosCompletados
+    FROM tbpedidos
+    WHERE estado = 'Cancelado'
+      AND MONTH(fechaPedido) = MONTH(CURDATE())
+      AND YEAR(fechaPedido) = YEAR(CURDATE());
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ContarPedidosPendientes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ContarPedidosPendientes`()
+BEGIN
+    SELECT COUNT(*) AS pedidosPendientes
+    FROM tbpedidos
+    WHERE estado <> 'Cancelado';
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ContarProductosActivos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ContarProductosActivos`()
+BEGIN
+    SELECT COUNT(*) AS totalProductosActivos
+    FROM tbproductos
+    WHERE estado = 1;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `CrearUsuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -600,7 +832,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
@@ -614,6 +846,48 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `GuardarContacto`(
 BEGIN
     INSERT INTO tbcontactos (nombre, email, telefono, asunto, mensaje, fecha_contacto)
     VALUES (pNombre, pEmail, pTelefono, pAsunto, pMensaje, NOW());
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `RegistrarCarrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarCarrito`( 
+    pIdProducto INT, 
+    pIdUsuario INT,
+    pCantidad INT
+)
+BEGIN
+
+	DECLARE vIdCarrito INT;
+    SELECT idCarrito INTO vIdCarrito
+    FROM tbCarrito
+    WHERE idUsuario = pIdUsuario
+    AND idProducto = pIdProducto;
+    
+    IF vIdCarrito IS NOT NULL THEN
+    
+    UPDATE tbcarrito
+	SET Fecha = now(),
+		Cantidad = pCantidad
+	WHERE idCarrito = vIdCarrito;
+	
+    ELSE 
+    
+    INSERT INTO tbcarrito(idProducto, idUsuario, Fecha, Cantidad)
+	VALUES (pIdProducto, pIdUsuario, NOW(), pCantidad);
+	
+    END IF;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -784,4 +1058,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-15 17:31:12
+-- Dump completed on 2025-12-03 15:39:49
