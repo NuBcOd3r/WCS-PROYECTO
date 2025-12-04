@@ -43,4 +43,55 @@
         $_SESSION["Total"] = $resultado["Total"];
     }
     
+    //Remover Producto Carrito
+    if(isset($_POST["btnRemoverProductoCarrito"]))
+    {
+        $idProducto = $_POST["idProducto"];
+        $idUsuario = $_SESSION["idUsuario"];
+        
+        $resultado = RemoverProductoCarritoModel($idProducto, $idUsuario);
+
+        if($resultado)
+        {
+            ConsultarResumenCarritos();
+            header("Location: ../../View/Carrito/Carritos.php");
+            exit;
+        }
+        else
+        {
+            $_POST["Mensaje"] = "La información no se removió correctamente";
+        }        
+    }
+
+    //Pagar Carrito
+    if(isset($_POST["btnRealizarPagoCarrito"]))
+    {
+        $idUsuario = $_SESSION["idUsuario"];
+        $mediPago = $_POST["MedioPago"];
+        
+        $resultado = RegistrarPagoCarritoModel($idUsuario, $mediPago);
+
+        if($resultado)
+        {
+            header("Location: ../../View/Inicio/Home.php");
+            exit;
+        }
+        else
+        {
+            $_POST["Mensaje"] = "La transacción no se realizo correctamente";
+        }        
+    }  
+
+    //Consultar Compras
+    function ConsultarCompras()
+    {
+        $idUsuario = $_SESSION["idUsuario"];
+        return ConsultarComprasModel($idUsuario);
+    }
+
+    //Consultar Detalle Compras
+    function ConsultarDetalleCompras($idFactura)
+    {
+        return ConsultarDetalleComprasModel($idFactura);
+    }
 ?>

@@ -10,3 +10,19 @@ $(function () {
     });
 
 });
+
+$(function () {
+
+    $("#formRealizarPago").validate({
+        rules: {
+            MedioPago: {
+                required: true
+            },
+        },
+        messages: {
+            MedioPago: {
+                required: "* Requerido"
+            }
+        }
+    });
+});

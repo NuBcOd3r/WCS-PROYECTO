@@ -173,11 +173,9 @@
                             <div style="background:white; padding:12px; border-top:2px solid #f08632; border-radius:0 0 18px 18px;">
                                 <form method="POST" action="" style="display:flex; gap:20px; align-items:center;">
                                     <input type="hidden" id="idProducto" name="idProducto" value="' . $fila['idProducto'] . '">
-                                    <input type="hidden" id="Inventario" name="Inventario'. $fila['cantidad'].' " value="' . $fila['idProducto'] . '">
-                                    <input type="text" name="cantidad"  id="cantidad'. $fila['idProducto'].' " value="1" min="1"
-                                        style="width:60px; border:1px solid #f08632; padding:5px; border-radius:4px;" onkeyup="soloNumeros(this)" maxLength="2">
-
-                                    <button type="submit" id="btnAgregarProductoCarrito" name="btnAgregarProductoCarrito" style="background:none; border:none; color:#f08632;; font-weight:bold; cursor:pointer;")">
+                                    <input type="hidden" name="Inventario" id="Inventario'.$fila["idProducto"].'" value="'.$fila["cantidad"].'">
+                                    <input type="text" name="cantidad"  id="cantidad'.$fila['idProducto']. '"value="1" style="width:35px; border:1px solid #f08632; padding:1px; margin-top:3px" onkeyup="soloNumeros(this)" maxLength="2">
+                                    <button type="submit" id="btnAgregarProductoCarrito" name="btnAgregarProductoCarrito" style="background:none; border:none; color:#f08632;; font-weight:bold; cursor:pointer;" onclick="return validarFormulario('.$fila['idProducto'].')")">
                                         Añadir al carrito
                                     </button>
                                 </form>

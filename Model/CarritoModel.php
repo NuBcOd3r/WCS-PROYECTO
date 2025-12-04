@@ -75,4 +75,103 @@
             return null;
         }
     }
+
+    //Remover Carrito Model
+    function RemoverProductoCarritoModel($idProducto,$idUsuario)
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL RemoverProductoCarrito('$idProducto','$idUsuario')";
+            $resultado = $context -> query($sentencia);
+
+            CloseConnection($context);
+            
+            return $resultado;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
+        }
+    }
+
+    //Pagar Carrito  
+    function RegistrarPagoCarritoModel($idUsuario, $medioPago)
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL RealizarPagoCarrito('$idUsuario', '$medioPago')";
+            $resultado = $context -> query($sentencia);
+
+            CloseConnection($context);
+
+            return $resultado;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return false;
+        }
+    } 
+     
+    //Consultar Compras 
+    function ConsultarComprasModel($idUsuario)
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL ConsultarCompras('$idUsuario')";
+            $resultado = $context -> query($sentencia);
+
+           $datos = [];
+
+            while ($row = $resultado->fetch_assoc()) {
+                $datos[] = $row;
+            }
+
+            $resultado->free();
+            CloseConnection($context);
+            
+            return $datos;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
+        }
+    }
+
+    //Consultar Detalle Compras 
+    function ConsultarDetalleComprasModel($idFactura)
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL ConsultarDetalleCompras('$idFactura')";
+            $resultado = $context -> query($sentencia);
+
+           $datos = [];
+
+            while ($row = $resultado->fetch_assoc()) {
+                $datos[] = $row;
+            }
+
+            $resultado->free();
+            CloseConnection($context);
+            
+            return $datos;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
+        }
+    }
+
 ?>

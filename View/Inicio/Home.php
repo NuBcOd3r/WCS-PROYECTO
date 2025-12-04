@@ -125,9 +125,9 @@
                                     if($perfil ==2)
                                     {
                                     echo'
-                                    <input type="text" name="cantidad"  id="cantidad'.$fila['idProducto']. 'value="1" style="width:35px; border:1px solid #f08632; padding:1px; margin-top:3px" onkeyup="soloNumeros(this)" maxLength="2">
+                                    <input type="text" name="cantidad"  id="cantidad'.$fila['idProducto']. '"value="1" style="width:35px; border:1px solid #f08632; padding:1px; margin-top:3px" onkeyup="soloNumeros(this)" maxLength="2">
 
-                                    <button type="submit" id="btnAgregarProductoCarrito" name="btnAgregarProductoCarrito" style="background:none; border:none; color:#f08632;; font-weight:bold; cursor:pointer;">
+                                    <button type="submit" id="btnAgregarProductoCarrito" name="btnAgregarProductoCarrito" style="background:none; border:none; color:#f08632;; font-weight:bold; cursor:pointer;" onclick="return validarFormulario('.$fila['idProducto'].')">
                                         Añadir al carrito
                                     </button>';
                                     }
