@@ -3,6 +3,12 @@
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/ProductosController.php';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/CarritoController.php';
   $resultado = ConsultarProductosIndex();
+  $perfil = isset($_SESSION["idRol"]) ? $_SESSION["idRol"] : null;
+
+  if ($perfil === "2") 
+  {
+    ConsultarResumenCarritos();
+  } 
 ?>
 
 <!DOCTYPE html>
@@ -114,11 +120,18 @@
 
                                     <input type="hidden" name="Inventario" id="Inventario<?= $fila['idProducto']?>" value="<?= $fila['cantidad'] ?>">
 
-                                    <input type="text" name="cantidad"  id="cantidad<?= $fila['idProducto']?>" value="1" style="width:35px; border:1px solid #f08632; padding:1px; margin-top:3px" onkeyup="soloNumeros(this)" maxLength="2">
+
+                                    <?php
+                                    if($perfil ==2)
+                                    {
+                                    echo'
+                                    <input type="text" name="cantidad"  id="cantidad'.$fila['idProducto']. 'value="1" style="width:35px; border:1px solid #f08632; padding:1px; margin-top:3px" onkeyup="soloNumeros(this)" maxLength="2">
 
                                     <button type="submit" id="btnAgregarProductoCarrito" name="btnAgregarProductoCarrito" style="background:none; border:none; color:#f08632;; font-weight:bold; cursor:pointer;">
                                         Añadir al carrito
-                                    </button>
+                                    </button>';
+                                    }
+                                    ?>
                                 </form>
 
                             </div>

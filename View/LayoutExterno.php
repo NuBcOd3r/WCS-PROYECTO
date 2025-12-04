@@ -113,7 +113,11 @@ function ShowHeader() {
                                                 <a class="dropdown-item user-option" id="updateInfo" href="../Inicio/InicioSesion.php">
                                                     <i class="fa-solid fa-user-pen me-2 user-option-icon"></i>Iniciar Sesión
                                                 </a>
-                                            </li>
+                                            </li>';
+
+                                            if($perfil == 1 || $perfil ==2)
+                                            {
+                                            echo'
                                             <li>
                                                 <a class="dropdown-item user-option" id="updateInfo" href="../Usuarios/Perfil.php">
                                                     <i class="fa-solid fa-user-pen me-2 user-option-icon"></i>Actualizar información
@@ -123,8 +127,11 @@ function ShowHeader() {
                                                 <a class="dropdown-item user-option" id="updatePassword" href="../Usuarios/Seguridad.php">
                                                     <i class="fa-solid fa-key me-2 user-option-icon"></i>Actualizar contraseña
                                                 </a>
-                                            </li>
-                                            <li><hr class="dropdown-divider user-divider"></li>
+                                            </li>';
+                                            }
+
+                                            echo
+                                            '<li><hr class="dropdown-divider user-divider"></li>
                                             <li>
                                                 <form action="" method="POST">
                                                     <button type="submit" class="dropdown-item" id="btnSalir" name="btnSalir">
@@ -180,7 +187,6 @@ function ShowHeader() {
                             echo '
                                 <li><a href="../Inicio/Home.php">Inicio</a></li>
                                 <li><a href="../SobreNosotros/SobreNosotros.php">Sobre Nosotros</a></li>
-                                <li><a href="../Productos/Productos.php">Productos</a></li>
                                 <li><a href="../Inicio/Contactanos.php">Contáctanos</a></li>
                             ';
                         }

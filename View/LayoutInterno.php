@@ -2,8 +2,6 @@
     include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/InicioController.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/CarritoController.php';
 
-    ConsultarResumenCarritos();
-
     if(session_status() == PHP_SESSION_NONE)
     {
         session_start();
@@ -181,7 +179,6 @@
                                     echo'
                                     <li><a href="../Inicio/Home.php">Inicio</a></li>
                                     <li><a href="../SobreNosotros/SobreNosotros.php">Sobre Nosotros</a></li>
-                                    <li><a href="../Productos/Productos.php">Productos</a></li>
                                     <li><a href="../Inicio/Contactanos.php">Contáctanos</a></li>
                                 ';
                                 }
