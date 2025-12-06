@@ -17,7 +17,7 @@
 
         if($resultado)
         {
-            header("Location: ../../View/Inicio/Home.php");
+            header("Location: ../../View/Productos/Productos.php");
             exit;
         }
         else

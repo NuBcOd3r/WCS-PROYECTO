@@ -12,3 +12,4 @@ function ConsultarPedidoPorId($id) {
 function ActualizarEstadoPedido($id, $estado) {
     return ActualizarEstadoPedidoModel($id, $estado);
 }
+?>
