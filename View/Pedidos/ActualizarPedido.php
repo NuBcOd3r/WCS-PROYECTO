@@ -16,8 +16,8 @@
       exit;
   }
 
-  $idPedido = $_GET['id'];
-  $pedido = ConsultarPedidoPorId($idPedido);
+ // $idPedido = $_GET['id'];
+ // $pedido = ConsultarPedidoPorId($idPedido);
 
   $mensaje = "";
 

@@ -42,9 +42,10 @@
                                             <th>Cliente</th>
                                             <th>Correo</th>
                                             <th>Teléfono</th>
-                                            <th>Fecha Pedido</th>
+                                            <th>Fecha de Ingreso</th>
+                                            <th>Fecha Solicitada</th>
+                                            <th>Descripcion</th>
                                             <th>Estado</th>
-                                            <th>Total</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -52,26 +53,13 @@
                                         <?php foreach($resultado as $fila): ?>
                                             <tr>
                                                 <td><?php echo $fila['idPedido']; ?></td>
-                                                <td><?php echo htmlspecialchars($fila['nombreCliente']); ?></td>
-                                                <td><?php echo htmlspecialchars($fila['emailCliente']); ?></td>
-                                                <td><?php echo htmlspecialchars($fila['telefonoCliente']); ?></td>
-                                                <td><?php echo date('d/m/Y H:i', strtotime($fila['fechaPedido'])); ?></td>
-                                                <td>
-                                                    <span class="badge 
-                                                        <?php
-                                                            switch($fila['estado']){
-                                                                case 'Solicitado':  echo 'bg-secondary'; break;
-                                                                case 'Aprobado':    echo 'bg-info'; break;
-                                                                case 'Listo':       echo 'bg-primary'; break;
-                                                                case 'Entregado':   echo 'bg-success'; break;
-                                                                case 'Cancelado':   echo 'bg-danger'; break;
-                                                                default:            echo 'bg-light text-dark';
-                                                            }
-                                                        ?>">
-                                                        <?php echo $fila['estado']; ?>
-                                                    </span>
-                                                </td>
-                                                <td>₡<?php echo number_format($fila['total'], 2); ?></td>
+                                                <td><?php echo htmlspecialchars($fila['Cliente']); ?></td>
+                                                <td><?php echo htmlspecialchars($fila['Correo']); ?></td>
+                                                <td><?php echo htmlspecialchars($fila['Telefono']); ?></td>
+                                                <td><?php echo date('d/m/Y H:i', strtotime($fila['FechaPedido'])); ?></td>
+                                                <td><?php echo date('d/m/Y H:i', strtotime($fila['FechaDeseada'])); ?></td>
+                                                <td><?php echo htmlspecialchars($fila['Descripcion']); ?></td>
+                                                <td><?php echo htmlspecialchars($fila['Estado']); ?></td>
                                                 <td>
                                                     <a class="btn btn-sm" style="color:#f08632;"
                                                        href="ActualizarPedido.php?id=<?php echo $fila['idPedido']; ?>">

@@ -140,6 +140,7 @@
             <div class="container p-4" style="background:white; border-radius:20px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
                 <h2 style="color:#f08632; font-weight:bold; text-align:center; margin-bottom:30px;">
                     ¿Y qué vas a elegir hoy?
+                    <p style="color:#f08632;" > ¿No encuentras lo que buscas? <a href="../Pedidos/PedidoEspecial.php">Da clic aquí.</a></p>
                 </h2>
 
                 <div class="row">';
