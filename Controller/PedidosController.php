@@ -22,6 +22,30 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Model/PedidosModel.php';
     }  
 
     function ConsultarPedidosAdmin() {
-    return ConsultarPedidosModel();
-}
+        return ConsultarPedidosModel();
+    }
+
+    function ConsultarPedidoPorId($id) {
+        return ConsultarPedidoPorIdModel($id);
+    }
+
+    if(isset($_POST["btnActualizarPedido"]))
+    {
+        $idPedido = $_POST["idPedido"];
+        $fechaDeseada = $_POST["fechaDeseada"];
+        $direccionEntrega = $_POST["direccionEntrega"];
+        $descripcion = $_POST["descripcion"];
+
+        $resultado = ActualizarPedidoModel($idPedido,$fechaDeseada, $direccionEntrega, $descripcion);
+
+        if($resultado)
+        {
+            header("Location: ../../View/Productos/Productos.php");
+            exit;
+        }
+        else
+        {
+            $_POST["Mensaje"] = "El pedido no se realizo correctamente";
+        }        
+    }
 ?>

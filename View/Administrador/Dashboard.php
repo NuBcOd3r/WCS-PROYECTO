@@ -122,8 +122,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/DashboardCont
                                 <div>
 
                                     <h6 class="mb-0 opacity-75">
-                                        Completados (<?php echo date('F'); ?>)
+                                        Pedidos Completados
                                     </h6>
+
 
                                     <h2 class="mb-0 mt-2 fw-bold">
                                         <?php echo $pedidosCompletados; ?>
@@ -148,51 +149,28 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/DashboardCont
                             </h5>
                         </div>
                         <div class="card-body" style="max-height:400px; overflow-y:auto;">
-                            <?php if (count($ultimosPedidos) > 0): ?>
-                            <table id="tablaPedidos" class="table table-sm table-hover">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Cliente</th>
-                                        <th>Fecha</th>
-                                        <th>Estado</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($ultimosPedidos as $p): ?>
-                                    <tr>
-                                        <td><?php echo $p['idPedido']; ?></td>
-                                        <td><?php echo htmlspecialchars($p['nombreCliente']); ?></td>
-                                        <td><?php echo date('d/m/Y H:i', strtotime($p['fechaPedido'])); ?></td>
-                                        <td>
-                                            <?php
-    $estadoClass = 'bg-light text-dark';
-
-    switch ($p['estado']) {
-        case 'Solicitado':  $estadoClass = 'bg-secondary'; break;
-        case 'Aprobado':    $estadoClass = 'bg-info';      break;
-        case 'Listo':       $estadoClass = 'bg-primary';   break;
-        case 'Entregado':   $estadoClass = 'bg-success';   break;
-        case 'Cancelado':   $estadoClass = 'bg-danger';    break;
-        default:            $estadoClass = 'bg-light text-dark';
-    }
-?>
-<span class="badge <?php echo $estadoClass; ?>">
-    <?php echo $p['estado']; ?>
-</span>
-
-                                        </td>
-                                        <td class="fw-bold">
-                                            ₡<?php echo number_format($p['total'], 2); ?>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            <?php else: ?>
-                            <p class="text-muted text-center mb-0">No hay pedidos recientes.</p>
-                            <?php endif; ?>
+                            <div class="table-responsive">
+                                <table id="tbPedidos" class="table table-sm table-hover">
+                                    <thead class="table-light text-center">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Cliente</th>
+                                            <th>Fecha de Ingreso</th>
+                                            <th>Fecha Solicitada</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <?php foreach($ultimosPedidos as $fila): ?>
+                                        <tr>
+                                            <td><?php echo $fila['idPedido']; ?></td>
+                                            <td><?php echo htmlspecialchars($fila['Cliente']); ?></td>
+                                            <td><?php echo date('d/m/Y H:i', strtotime($fila['FechaPedido'])); ?></td>
+                                            <td><?php echo date('d/m/Y H:i', strtotime($fila['FechaDeseada'])); ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -251,17 +229,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/DashboardCont
                         </div>
                         <div class="card-body">
                             <div class="row text-center">
-                                <div class="col-lg-3 col-md-6 mb-3">
+                                <div class="col-lg-4 col-md-6 mb-3">
                                     <a href="../Productos/Productos.php" class="btn btn-outline-primary w-100 py-3">
                                         Gestionar productos
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-6 mb-3">
+                                <div class="col-lg-4 col-md-6 mb-3">
                                     <a href="../Productos/Categoria.php" class="btn btn-outline-primary w-100 py-3">
                                         Gestionar categorías
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-6 mb-3">
+                                <div class="col-lg-4 col-md-6 mb-3">
                                     <a href="../Pedidos/Pedidos.php" class="btn btn-outline-primary w-100 py-3">
                                         Gestionar pedidos
                                     </a>

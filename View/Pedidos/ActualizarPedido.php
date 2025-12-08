@@ -16,8 +16,8 @@
       exit;
   }
 
- // $idPedido = $_GET['id'];
- // $pedido = ConsultarPedidoPorId($idPedido);
+ $idPedido = $_GET['id'];
+ $pedido = ConsultarPedidoPorId($idPedido);
 
   $mensaje = "";
 
@@ -47,41 +47,44 @@
                 <div class="col-md-8">
                     <div class="card shadow-lg border-0 rounded-4" style="background-color: #f8f9fa;">
                         <div class="card-body">
-                            <h2 class="login-title text-center mb-4 mt-2">Actualizar estado de pedido</h2>
+                            <h2 class="login-title text-center mb-4 mt-2">Actualizar Pedido # <?php echo $idPedido;?></h2>
 
                             <?php if ($mensaje != ""): ?>
-                                <div class="alert alert-info text-center"><?php echo $mensaje; ?></div>
+                            <div class="alert alert-info text-center"><?php echo $mensaje; ?></div>
                             <?php endif; ?>
 
-                            <p><strong>Cliente:</strong> <?php echo htmlspecialchars($pedido['nombreCliente']); ?></p>
-                            <p><strong>Fecha:</strong> <?php echo date('d/m/Y H:i', strtotime($pedido['fechaPedido'])); ?></p>
-                            <p><strong>Total:</strong> ₡<?php echo number_format($pedido['total'], 2); ?></p>
+                            <p><strong>Cliente:</strong> <?php echo htmlspecialchars($pedido['Cliente']); ?></p>
+                            <p><strong>Correo:</strong> <?php echo htmlspecialchars($pedido['Correo']); ?></p>
+                            <p><strong>Telefono:</strong> <?php echo htmlspecialchars($pedido['Telefono']); ?></p>
+                            <p><strong>Fecha Pedido:</strong> <?php echo date('d/m/Y H:i', strtotime($pedido['FechaPedido'])); ?></p>
 
-                            <form method="POST">
+                            <form method="POST" action="" id="formActualizarPedido" name="formActualizarPedido">
+                                <input type="hidden" name="idPedido" id="idPedido" value="<?php echo htmlspecialchars($idPedido); ?>">    
+
                                 <div class="mb-3">
-                                    <label for="estado" class="form-label mt-2"
-                                           style="color:#f08632; font-weight:700;">Estado</label>
-                                    <select name="estado" id="estado"
-                                            class="form-select border-1 login-input" style="height:55px;" required>
-                                        <?php
-                                          $estados = ['Solicitado','Aprobado','Listo','Entregado','Cancelado'];
-                                          foreach($estados as $estado){
-                                              $selected = ($estado == $pedido['estado']) ? 'selected' : '';
-                                              echo "<option value=\"$estado\" $selected>$estado</option>";
-                                          }
-                                        ?>
-                                    </select>
+                                    <label class="form-label"><strong>Fecha Deseada</strong></label>
+                                    <input type="datetime-local" id="fechaDeseada" name="fechaDeseada" class="form-control"
+                                        value="<?php echo date('Y-m-d\TH:i', strtotime($pedido['FechaDeseada'])); ?>"
+                                        required>
                                 </div>
 
-                                <button type="submit" class="login-btn mt-0">
-                                    Guardar cambios
-                                </button>
+                                <div class="mb-3">
+                                    <label class="form-label"><strong>Dirección de Entrega</strong></label>
+                                    <input type="text"  id="direccionEntrega" name="direccionEntrega" class="form-control"
+                                        value="<?php echo htmlspecialchars($pedido['direccionEntrega']); ?>" required>
+                                </div>
 
-                                <a href="Pedidos.php" class="btn btn-secondary mt-2">
-                                    Volver al listado
-                                </a>
+                                <div class="mb-3">
+                                    <label class="form-label"><strong>Descripción</strong></label>
+                                    <textarea id="descripcion" name="descripcion" class="form-control" rows="3" required><?php 
+                                        echo htmlspecialchars($pedido['Descripcion']); ?></textarea>
+                                </div>
+
+                                <div class="d-flex gap-2 mt-3">
+                                    <button type="submit" id="btnActualizarPedido" name="btnActualizarPedido" class="login-btn">Guardar cambios</button>
+                                    <a href="Pedidos.php" class="btn btn-secondary">Volver al listado</a>
+                                </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
@@ -92,4 +95,5 @@
     <?php ShowFooter(); ?>
     <?php ShowJS(); ?>
 </body>
+
 </html>

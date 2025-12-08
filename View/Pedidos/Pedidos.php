@@ -62,6 +62,10 @@
                                                 <td><?php echo htmlspecialchars($fila['Estado']); ?></td>
                                                 <td>
                                                     <a class="btn btn-sm" style="color:#f08632;"
+                                                       href="Cotizar.php?id=<?php echo $fila['idPedido']; ?>">
+                                                        <i class="fa-solid fa-cart-shopping"></i>
+                                                    </a>
+                                                    <a class="btn btn-sm" style="color:#f08632;"
                                                        href="ActualizarPedido.php?id=<?php echo $fila['idPedido']; ?>">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
