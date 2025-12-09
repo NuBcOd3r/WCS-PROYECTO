@@ -89,24 +89,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <div class="modal-body">
-                    <form method="POST" action="" id="formCotizar" name="formCotizar">
-                        <input type="hidden" name="idPedido" id="idPedido" value="<?php echo htmlspecialchars($idPedido); ?>">    
+                <form method="post" action="" id="formCotizar" name="formCotizar">
+                    <div class="modal-body">
+                        <input type="hidden" name="idPedido" id="idPedido"
+                            value="<?php echo htmlspecialchars($idPedido); ?>">
                         <div class="mb-3">
-                            <label class="form-label"><strong>Precio: </strong></label>
-                            <input type="text"  id="precio" name="precio" class="form-control" required>
+                            <label class="form-label"><strong>Precio Unitario: </strong></label>
+                            <input type="text" id="precioUnitario" name="precioUnitario" class="form-control" required>
                         </div>
-                </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Cantidad: </strong></label>
+                            <input type="number" id="cantidad" name="cantidad" class="form-control" required>
+                        </div>
+                    </div>
 
-                <div class="modal-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-primary">
-                        Calcular
-                    </button>
-
-                    <button type="button" class="btn btn-success">
-                        Enviar Cotización
-                    </button>
-                </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary" id="btnCotizar" name="btnCotizar">
+                            Calcular
+                        </button>
+                    </div>
+                </form>
 
             </div>
         </div>

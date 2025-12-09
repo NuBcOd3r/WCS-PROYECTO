@@ -83,4 +83,61 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Model/UtilitiesModel.php
         }
     }
 
+    function CotizarPedidoModel($idPedido,$precioUnitario,$cantidad)
+    {
+        try
+        {
+            $context = OpenConnection();
+            $sentencia = "CALL CotizarPedido('$idPedido','$precioUnitario','$cantidad')";
+            $resultado = $context -> query($sentencia);
+            CloseConnection($context);
+            return $resultado;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return false;
+        }
+    }
+
+    function ConsultarCotizacionPorIdModel($idPedido)
+    {
+        try {
+            $context = OpenConnection();
+
+            $sentencia = "CALL ConsultarCotizacionPorId('$idPedido')";
+            $resultado = $context -> query($sentencia);
+
+            $datos = null;
+            while ($row = $resultado->fetch_assoc()) {
+                $datos = $row;
+            }
+
+            $resultado->free();
+            CloseConnection($context);
+
+            return $datos;
+        } catch (Exception $error) {
+            SaveError($error);
+            return null;
+        }
+    }
+
+    function FinalizarPedidoModel($idPedido)
+    {
+        try {
+
+            $context = OpenConnection();
+            $sentencia = "CALL FinalizarPedido('$idPedido')";
+            $resultado = $context -> query($sentencia);
+            CloseConnection($context);
+            return $resultado;
+
+        } catch (Exception $error) {
+            SaveError($error);
+            return null;
+        }
+    }
+
+    
 ?>

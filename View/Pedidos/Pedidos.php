@@ -40,8 +40,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Cliente</th>
-                                            <th>Correo</th>
-                                            <th>Teléfono</th>
                                             <th>Fecha de Ingreso</th>
                                             <th>Fecha Solicitada</th>
                                             <th>Descripcion</th>
@@ -54,20 +52,22 @@
                                             <tr>
                                                 <td><?php echo $fila['idPedido']; ?></td>
                                                 <td><?php echo htmlspecialchars($fila['Cliente']); ?></td>
-                                                <td><?php echo htmlspecialchars($fila['Correo']); ?></td>
-                                                <td><?php echo htmlspecialchars($fila['Telefono']); ?></td>
                                                 <td><?php echo date('d/m/Y H:i', strtotime($fila['FechaPedido'])); ?></td>
                                                 <td><?php echo date('d/m/Y H:i', strtotime($fila['FechaDeseada'])); ?></td>
                                                 <td><?php echo htmlspecialchars($fila['Descripcion']); ?></td>
                                                 <td><?php echo htmlspecialchars($fila['Estado']); ?></td>
                                                 <td>
                                                     <a class="btn btn-sm" style="color:#f08632;"
+                                                       href="ActualizarPedido.php?id=<?php echo $fila['idPedido']; ?>">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </a>
+                                                    <a class="btn btn-sm" style="color:green;"
                                                        href="Cotizar.php?id=<?php echo $fila['idPedido']; ?>">
                                                         <i class="fa-solid fa-cart-shopping"></i>
                                                     </a>
-                                                    <a class="btn btn-sm" style="color:#f08632;"
-                                                       href="ActualizarPedido.php?id=<?php echo $fila['idPedido']; ?>">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    <a class="btn btn-sm" style="color:blue;"
+                                                       href="CotizacionFinal.php?id=<?php echo $fila['idPedido']; ?>">
+                                                        <i class="fa-solid fa-cash-register"></i>
                                                     </a>
                                                 </td>
                                             </tr>
