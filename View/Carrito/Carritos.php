@@ -2,8 +2,6 @@
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/View/LayoutInterno.php';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/WCS-PROYECTO/Controller/CarritoController.php';
 
-  $resultado = ConsultarCarritos();
-
   if(session_status() == PHP_SESSION_NONE){
         session_start();
   }
@@ -12,6 +10,10 @@
     header("Location: ../../View/Inicio/IniciarSesion.php");
     exit;
   }
+
+   $resultado = ConsultarCarritos();
+
+   ConsultarResumenCarritos();
 ?>
 
 <!DOCTYPE html>

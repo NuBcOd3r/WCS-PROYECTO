@@ -17,6 +17,9 @@
 
         if($resultado)
         {
+
+            ConsultarResumenCarritos();
+
             header("Location: ../../View/Productos/Productos.php");
             exit;
         }
